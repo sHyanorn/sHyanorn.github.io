@@ -15,7 +15,7 @@ const lang = toLang(Astro.currentLocale)
     {t(lang, 'location')}
   </p>
 
-  <section class="rise" style="--rise: 2" aria-labelledby="direction">
+  <section class="row rise" style="--rise: 2" aria-labelledby="direction">
     <h2 id="direction">{t(lang, 'direction')}</h2>
     <p>{t(lang, 'directionBody')}</p>
   </section>
@@ -29,8 +29,31 @@ const lang = toLang(Astro.currentLocale)
   }
 
   section {
-    max-width: 36em;
     margin-top: var(--space-6);
+  }
+
+  section p {
+    max-width: var(--width-prose);
+  }
+
+  /* A wide screen puts each heading beside its text, as on project pages. */
+  @media (min-width: 48rem) {
+    .row {
+      display: grid;
+      grid-template-columns: 15rem minmax(0, 1fr);
+      gap: var(--space-5);
+      padding-top: var(--space-4);
+      border-top: 1px solid var(--color-line);
+    }
+
+    .row + .row {
+      margin-top: var(--space-5);
+    }
+
+    .row h2 {
+      margin: 0;
+      font-size: var(--step-2);
+    }
   }
 
   h2 {
