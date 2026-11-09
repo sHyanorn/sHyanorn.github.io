@@ -42,6 +42,20 @@ const ui = {
   focusQuant: { en: 'Quantitative research', zh: '量化研究' },
   projects: { en: 'Projects', zh: '项目' },
   articles: { en: 'Articles', zh: '文章' },
+  about: { en: 'About', zh: '关于' },
+  aboutDescription: {
+    en: 'Aaron Yang is based in Melbourne, Australia.',
+    zh: 'Aaron Yang 现居澳大利亚墨尔本。',
+  },
+  location: {
+    en: 'Based in Melbourne, Australia.',
+    zh: '现居澳大利亚墨尔本。',
+  },
+  direction: { en: 'Where the work sits', zh: '我的方向' },
+  directionBody: {
+    en: 'My work sits where economics, finance and technology meet. The questions there are how markets match orders, how a strategy can look good by chance, and how to judge a decision without live data. Software is how I test those questions, and each project on this site answers one with numbers that trace back to its repository.',
+    zh: '我的工作处在经济、金融和技术的交汇处。这里的问题是：市场怎样撮合订单，一个策略怎样仅凭运气就显得很好，没有线上数据时怎样评判一个决策。软件是我检验这些问题的方式，这个网站上的每个项目都回答其中一个问题，给出的数字都能追溯到项目仓库。',
+  },
   articlesDescription: {
     en: "Aaron Yang's articles, one per project.",
     zh: 'Aaron Yang 的文章，每个项目一篇。',
