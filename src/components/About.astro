@@ -1,8 +1,18 @@
 ---
+import { getRelativeLocaleUrl } from 'astro:i18n'
+import { getEntry } from 'astro:content'
 import Base from '../layouts/Base.astro'
 import { t, toLang } from '../lib/i18n'
+import Text from './Text.astro'
 
 const lang = toLang(Astro.currentLocale)
+const about = (await getEntry('about', 'about'))!.data
+const { location, areas, tools, direction } = about
+// "Projects: a, b." and "项目：a、b。"
+const punct = {
+  en: { colon: ': ', comma: ', ', stop: '.' },
+  zh: { colon: '：', comma: '、', stop: '。' },
+}[lang]
 ---
 
 <Base
@@ -12,12 +22,43 @@ const lang = toLang(Astro.currentLocale)
   <h1 class="rise">{t(lang, 'about')}</h1>
 
   <p class="location rise" style="--rise: 1">
-    {t(lang, 'location')}
+    {location[lang]}
   </p>
 
-  <section class="row rise" style="--rise: 2" aria-labelledby="direction">
-    <h2 id="direction">{t(lang, 'direction')}</h2>
-    <p>{t(lang, 'directionBody')}</p>
+  {areas.map((area, i) => (
+    <section class="row reveal" aria-labelledby={`area-${i + 1}`}>
+      <h2 id={`area-${i + 1}`}>{area.title[lang]}</h2>
+      <div>
+        <ul>
+          {area.items.map((item) => (
+            <li>
+              <Text value={item[lang]} />
+            </li>
+          ))}
+        </ul>
+        <p class="projects">
+          {[
+            t(lang, area.projects.length > 1 ? 'projects' : 'project'),
+            punct.colon,
+            ...area.projects.flatMap((id, j) => [
+              j > 0 && punct.comma,
+              <a href={getRelativeLocaleUrl(lang, `projects/${id}/`)}>{id}</a>,
+            ]),
+            punct.stop,
+          ]}
+        </p>
+      </div>
+    </section>
+  ))}
+
+  <section class="row reveal" aria-labelledby="tools">
+    <h2 id="tools">{tools.title[lang]}</h2>
+    <p>{tools.body[lang]}</p>
+  </section>
+
+  <section class="row reveal" aria-labelledby="direction">
+    <h2 id="direction">{direction.title[lang]}</h2>
+    <p>{direction.body[lang]}</p>
   </section>
 </Base>
 
@@ -32,8 +73,27 @@ const lang = toLang(Astro.currentLocale)
     margin-top: var(--space-6);
   }
 
-  section p {
+  section :is(p, ul) {
     max-width: var(--width-prose);
+  }
+
+  ul {
+    display: grid;
+    gap: var(--space-1);
+    padding-left: var(--space-3);
+  }
+
+  li::marker {
+    color: var(--color-text-muted);
+  }
+
+  .projects {
+    margin-top: var(--space-2);
+    color: var(--color-text-muted);
+  }
+
+  .projects a {
+    color: var(--color-accent);
   }
 
   /* A wide screen puts each heading beside its text, as on project pages. */
