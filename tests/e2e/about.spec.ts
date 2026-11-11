@@ -1,6 +1,10 @@
-// The About page shows the city line.
+// The About page shows the city line. Each area names its projects, by page
+// or by repository, and the earlier projects follow the areas.
+import { readFileSync } from 'node:fs'
 import { expect, test } from '@playwright/test'
 import { BASE } from './site'
+
+const about = JSON.parse(readFileSync('src/content/site/about.json', 'utf8'))
 
 test.use({ viewport: { width: 320, height: 640 } })
 
@@ -8,4 +12,36 @@ for (const path of [`${BASE}about/`, `${BASE}zh/about/`])
   test(`${path}: city line`, async ({ page }) => {
     await page.goto(path)
     await expect(page.locator('.location')).toBeVisible()
+  })
+
+for (const path of [`${BASE}about/`, `${BASE}zh/about/`])
+  test(`${path}: areas link their projects and repositories`, async ({
+    page,
+  }) => {
+    await page.goto(path)
+    const zh = path.endsWith('zh/about/')
+    await expect(
+      page.locator('section[aria-labelledby^="area-"] h2'),
+    ).toHaveText(
+      about.areas.map((a: { title: Record<string, string> }) =>
+        zh ? a.title.zh : a.title.en,
+      ),
+    )
+    for (const [i, area] of about.areas.entries()) {
+      const hrefs = await page
+        .locator(`section[aria-labelledby="area-${i + 1}"] .projects a`)
+        .evaluateAll((as) => as.map((a) => a.getAttribute('href')))
+      expect(hrefs).toEqual([
+        ...area.projects.map(
+          (id: string) => `${BASE}${zh ? 'zh/' : ''}projects/${id}/`,
+        ),
+        ...(area.repos ?? []),
+      ])
+    }
+    // Earlier projects come after the last area and before the tools.
+    const order = await page
+      .locator('main section[aria-labelledby]')
+      .evaluateAll((els) => els.map((el) => el.getAttribute('aria-labelledby')))
+    expect(order.slice(-3)).toEqual(['earlier', 'tools', 'direction'])
+    await expect(page.locator('#earlier ~ ul a')).toHaveCount(3)
   })
