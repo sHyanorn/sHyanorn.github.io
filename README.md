@@ -2,33 +2,13 @@
 
 [![CI](https://github.com/sHyanorn/sHyanorn.github.io/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/sHyanorn/sHyanorn.github.io/actions/workflows/ci.yml?query=branch%3Amain)
 
-Personal website of Aaron Yang. Built with Astro and TypeScript, with a hand-written WebGL2 and GLSL background.
+Personal website of Aaron Yang, live at [shyanorn.github.io](https://shyanorn.github.io/). Built with Astro and TypeScript, with a hand-written WebGL2 and GLSL background, in English and in Chinese. On the live site at `32a0a9f` on 2026-11-11, Lighthouse scored each of the 32 pages in the table 100 in all four categories on the desktop preset; the lowest mobile medians are 97 for performance and 96 for accessibility. It needs Chrome and Edge 123, Firefox 120 or Safari 17.5 or later, with no fallback below them.
 
-Live at [shyanorn.github.io](https://shyanorn.github.io/).
+## Results
 
-## Pages
+### Lighthouse
 
-- Home: a headline, a one-sentence introduction and the three areas of the work, over the WebGL2 background ([D015](docs/DECISIONS.md), [D017](docs/DECISIONS.md), [D022](docs/DECISIONS.md)), then the projects as picture cards, the first one full width ([D020](docs/DECISIONS.md)), and the earlier projects as text entries ([D022](docs/DECISIONS.md))
-- `/projects/<slug>/`: one page per project, from `src/content/projects/<slug>.json` ([D012](docs/DECISIONS.md), [D013](docs/DECISIONS.md)); each project's numbers are traced to its repository in `docs/project-sources/<slug>.md`
-- `/articles/` and `/articles/<slug>/`: articles about the projects, in MDX ([D005](docs/DECISIONS.md)), each labelled a note or a paper ([D022](docs/DECISIONS.md)), and the full-text feed at `/rss.xml` ([D016](docs/DECISIONS.md))
-- `/about/`: the three areas with what each project built and measured, the earlier projects, and the tools, from `src/content/site/about.json` ([D017](docs/DECISIONS.md)); each statement is traced in `docs/project-sources/about.md`
-
-Every page but the 404 page also exists in Chinese under `/zh/` ([D011](docs/DECISIONS.md)). The pages sit in a 1280 px container: from 768 px the home page sets its cards two a row and About puts its headings beside the text, from 1024 px the home page sets its areas and earlier projects three a row and project and article pages add side columns, and below about 736 px every page is one column, apart from the metrics ([D020](docs/DECISIONS.md)).
-
-Browsers: Chrome and Edge 123, Firefox 120 and Safari 17.5, desktop and iOS, or later, set by `light-dark()`, which like `color-mix()`, `svh`, `lh` and AVIF images has no fallback. Without scroll-driven animations (Chrome before 115, Firefox before 159, Safari before 26) the first screen fades in on load and blocks further down show at once ([D014](docs/DECISIONS.md)).
-
-## Screenshots
-
-At 1440×900 ([D019](docs/DECISIONS.md)).
-
-| Light | Dark |
-| --- | --- |
-| ![Home page, light theme](docs/screenshots/home-light.png) | ![Home page, dark theme](docs/screenshots/home-dark.png) |
-| ![ope-checks project page, light theme](docs/screenshots/ope-checks-light.png) | ![ope-checks project page, dark theme](docs/screenshots/ope-checks-dark.png) |
-
-## Lighthouse
-
-The live site at `32a0a9f` on 2026-11-11, with CI's settings ([D019](docs/DECISIONS.md)): the mobile preset three times per page, the median run kept, and the desktop preset once. Each cell is performance / accessibility / best practices / SEO. Mobile performance on the Chinese pages is the median of seven runs: on the live site their longest layout task runs after first contentful paint and counts as blocking time, and single runs of one page ranged from 85 to 100 ([D020](docs/DECISIONS.md)).
+The live site at `32a0a9f` on 2026-11-11, with CI's settings ([D019](docs/DECISIONS.md)): the mobile preset three times per page, the median run kept, and the desktop preset once. Each cell is performance / accessibility / best practices / SEO. Mobile performance on the Chinese pages is the median of seven runs ([D020](docs/DECISIONS.md)).
 
 | Page | Mobile | Desktop |
 | --- | --- | --- |
@@ -65,9 +45,25 @@ The live site at `32a0a9f` on 2026-11-11, with CI's settings ([D019](docs/DECISI
 | `/projects/vault-share/` | 100 / 100 / 100 / 100 | 100 / 100 / 100 / 100 |
 | `/zh/projects/vault-share/` | 97 / 100 / 100 / 100 | 100 / 100 / 100 / 100 |
 
-Where accessibility is below 100, the contrast check read the gallery captions of three Chinese project pages partway through their entrance fade, on mobile.
+### Screenshots
 
-## Development
+At 1440×900 ([D019](docs/DECISIONS.md)).
+
+| Light | Dark |
+| --- | --- |
+| ![Home page, light theme](docs/screenshots/home-light.png) | ![Home page, dark theme](docs/screenshots/home-dark.png) |
+| ![ope-checks project page, light theme](docs/screenshots/ope-checks-light.png) | ![ope-checks project page, dark theme](docs/screenshots/ope-checks-dark.png) |
+
+## How it works
+
+- Home: a headline, a one-sentence introduction and the three areas of the work over the WebGL2 background, then the projects as picture cards and the earlier projects as text entries ([D015](docs/DECISIONS.md), [D017](docs/DECISIONS.md), [D020](docs/DECISIONS.md), [D022](docs/DECISIONS.md)).
+- `/projects/<slug>/`: one page per project, from `src/content/projects/<slug>.json` ([D012](docs/DECISIONS.md), [D013](docs/DECISIONS.md)). Each project's numbers are traced to its repository in `docs/project-sources/<slug>.md`.
+- `/articles/` and `/articles/<slug>/`: articles about the projects, in MDX, each labelled a note or a paper, and the full-text feed at `/rss.xml` ([D005](docs/DECISIONS.md), [D016](docs/DECISIONS.md), [D022](docs/DECISIONS.md)).
+- `/about/`: the three areas with what each project built and measured, the earlier projects, and the tools, from `src/content/site/about.json` ([D017](docs/DECISIONS.md)). Each statement is traced in `docs/project-sources/about.md`.
+
+Every page but the 404 page also exists in Chinese under `/zh/` ([D011](docs/DECISIONS.md)). The layout widths are in [docs/SPEC.md](docs/SPEC.md#3-technical-approach) and [D020](docs/DECISIONS.md).
+
+## Run it
 
 Requires Node.js 22.23.4 or later.
 
@@ -84,19 +80,15 @@ node scripts/copy-export.ts <project>…  # a project's text, one file per langu
 node scripts/site-image.ts             # after a build: the site's share images, when the home introduction changes
 ```
 
-`npm run screenshots` saves a full-page screenshot of every page to `artifacts/screens/`, and the home page background as `home-{390,1440}-{light,dark}-{t0,t10,t20,still,fallback}.png`: three points of the animation, the still frame and the CSS fallback. `BACKGROUND_TIMES=0,30,90` picks other points, in seconds. `PERF=1 npx playwright test tests/e2e/background-perf.spec.ts` prints what the background costs two phones with the CPU slowed 4 and 6 times.
+`SITE_URL` and `BASE_PATH` set the origin and base path ([D007](docs/DECISIONS.md)); local builds serve from the root. The Deploy workflow runs by hand ([D009](docs/DECISIONS.md)), and `node scripts/check-live.mjs <site URL>` then checks the live site. [docs/SPEC.md](docs/SPEC.md#3-technical-approach) has the screenshot options, the base-path check and what the live check covers.
 
-`SITE_URL` and `BASE_PATH` set the origin and base path ([D007](docs/DECISIONS.md)). Deploys take both from the GitHub Pages settings, and local builds serve from the root. To check a build under a base path, set `BASE_PATH` for both the build and the checks:
+## Limits
 
-```bash
-export BASE_PATH=/ci-base
-npm run build && npm run e2e
-```
+- Browsers: Chrome and Edge 123, Firefox 120 and Safari 17.5, desktop and iOS, or later, set by `light-dark()`, which like `color-mix()`, `svh`, `lh` and AVIF images has no fallback.
+- Without scroll-driven animations (Chrome before 115, Firefox before 159, Safari before 26) the first screen fades in on load and blocks further down show at once ([D014](docs/DECISIONS.md)).
+- Single Lighthouse runs of one Chinese page ranged from 85 to 100 in mobile performance: on the live site their longest layout task runs after first contentful paint and counts as blocking time ([D020](docs/DECISIONS.md)).
+- Where accessibility is below 100, the contrast check read the gallery captions of three Chinese project pages partway through their entrance fade, on mobile.
 
-## Deploy
-
-The Deploy workflow runs by hand ([D009](docs/DECISIONS.md)). Afterwards, `node scripts/check-live.mjs <site URL>` checks the live site: pages, links and assets under the base, share images, the sitemap, the 404 page, trailing-slash redirects and the feed's links. New pages go in its `routes` list.
-
-## License
+## Licence
 
 MIT for code. Written content and images are all rights reserved.

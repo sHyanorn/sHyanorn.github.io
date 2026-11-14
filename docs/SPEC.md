@@ -45,6 +45,25 @@ Fixed structure:
 - English and Chinese: English at the site root and Chinese under `/zh/`. The toggle links to the same page in the other language, and every page declares both versions with `hreflang`. Article bodies stay in English (see Articles). Project content files hold both languages for every field a page shows
 - Deploy to GitHub Pages or Vercel, with a custom domain (optional)
 
+### Screenshots, base path and the live check
+
+From the README as of commit 953119e.
+
+`npm run screenshots` saves a full-page screenshot of every page to `artifacts/screens/`, and the home page background as `home-{390,1440}-{light,dark}-{t0,t10,t20,still,fallback}.png`: three points of the animation, the still frame and the CSS fallback. `BACKGROUND_TIMES=0,30,90` picks other points, in seconds. `PERF=1 npx playwright test tests/e2e/background-perf.spec.ts` prints what the background costs two phones with the CPU slowed 4 and 6 times.
+
+`SITE_URL` and `BASE_PATH` set the origin and base path ([D007](DECISIONS.md)). Deploys take both from the GitHub Pages settings, and local builds serve from the root. To check a build under a base path, set `BASE_PATH` for both the build and the checks:
+
+```bash
+export BASE_PATH=/ci-base
+npm run build && npm run e2e
+```
+
+The Deploy workflow runs by hand ([D009](DECISIONS.md)). Afterwards, `node scripts/check-live.mjs <site URL>` checks the live site: pages, links and assets under the base, share images, the sitemap, the 404 page, trailing-slash redirects and the feed's links. New pages go in its `routes` list.
+
+Layout, from the README as of commit 953119e:
+
+Every page but the 404 page also exists in Chinese under `/zh/` ([D011](DECISIONS.md)). The pages sit in a 1280 px container: from 768 px the home page sets its cards two a row and About puts its headings beside the text, from 1024 px the home page sets its areas and earlier projects three a row and project and article pages add side columns, and below about 736 px every page is one column, apart from the metrics ([D020](DECISIONS.md)).
+
 ## 4. Design guidelines
 
 - Fonts: system font stack (SF Pro and PingFang SC first)
