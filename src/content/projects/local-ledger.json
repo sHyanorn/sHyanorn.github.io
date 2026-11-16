@@ -90,7 +90,7 @@
     },
     "source": {
       "label": { "en": "Decision log", "zh": "决策记录" },
-      "url": "https://github.com/sHyanorn/local-ledger/blob/4c28d63e45dd7775b73bf11bfb1f180b24479aea/docs/DECISIONS.md"
+      "url": "https://github.com/sHyanorn/local-ledger/blob/49a0b6a9dc6744adb43a4a09da972535b881ba5f/docs/DECISIONS.md"
     }
   },
   "problem": [
@@ -195,7 +195,7 @@
         }
       }
     ],
-    "source": "https://github.com/sHyanorn/local-ledger/blob/4c28d63e45dd7775b73bf11bfb1f180b24479aea/docs/DECISIONS.md"
+    "source": "https://github.com/sHyanorn/local-ledger/blob/49a0b6a9dc6744adb43a4a09da972535b881ba5f/docs/DECISIONS.md"
   },
   "challenges": [
     {

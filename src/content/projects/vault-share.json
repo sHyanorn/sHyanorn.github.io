@@ -58,7 +58,7 @@
     },
     "source": {
       "label": { "en": "Security test report", "zh": "安全测试报告" },
-      "url": "https://github.com/sHyanorn/vault-share/blob/bc14051f06413742b5696249c751feedf0c99afa/docs/security/TEST_REPORT.md"
+      "url": "https://github.com/sHyanorn/vault-share/blob/af933460b1335a74a3df560c98cef843a9a77312/docs/security/TEST_REPORT.md"
     }
   },
   "problem": [
@@ -166,7 +166,7 @@
         }
       }
     ],
-    "source": "https://github.com/sHyanorn/vault-share/blob/bc14051f06413742b5696249c751feedf0c99afa/docs/DECISIONS.md"
+    "source": "https://github.com/sHyanorn/vault-share/blob/af933460b1335a74a3df560c98cef843a9a77312/docs/DECISIONS.md"
   },
   "challenges": [
     {

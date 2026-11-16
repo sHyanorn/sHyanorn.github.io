@@ -119,7 +119,7 @@
         "en": "Benchmarks",
         "zh": "基准测试"
       },
-      "url": "https://github.com/sHyanorn/recserve/blob/9b17c175afec54de86af02380419b7eeb2bb4ba6/docs/BENCHMARKS.md"
+      "url": "https://github.com/sHyanorn/recserve/blob/35a47a2fb45eda83d71887f34b8914b6041b10ce/docs/BENCHMARKS.md"
     }
   },
   "problem": [
@@ -250,7 +250,7 @@
         }
       }
     ],
-    "source": "https://github.com/sHyanorn/recserve/blob/9b17c175afec54de86af02380419b7eeb2bb4ba6/docs/DECISIONS.md"
+    "source": "https://github.com/sHyanorn/recserve/blob/35a47a2fb45eda83d71887f34b8914b6041b10ce/docs/DECISIONS.md"
   },
   "challenges": [
     {

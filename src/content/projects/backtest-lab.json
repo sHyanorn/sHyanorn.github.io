@@ -117,7 +117,7 @@
         "en": "Demo results",
         "zh": "演示结果"
       },
-      "url": "https://github.com/sHyanorn/backtest-lab/blob/883c7ab5b544469c620d8c33864482c3fcd7495e/docs/DEMO.md"
+      "url": "https://github.com/sHyanorn/backtest-lab/blob/8f11090b99da79b2b64d27fd1e9f0d20bdc8f3c3/docs/DEMO.md"
     }
   },
   "problem": [
@@ -276,7 +276,7 @@
         }
       }
     ],
-    "source": "https://github.com/sHyanorn/backtest-lab/blob/883c7ab5b544469c620d8c33864482c3fcd7495e/docs/DECISIONS.md"
+    "source": "https://github.com/sHyanorn/backtest-lab/blob/8f11090b99da79b2b64d27fd1e9f0d20bdc8f3c3/docs/DECISIONS.md"
   },
   "challenges": [
     {
