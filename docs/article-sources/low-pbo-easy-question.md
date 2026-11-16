@@ -2,7 +2,7 @@
 
 Article: `src/content/articles/low-pbo-easy-question.mdx`.
 
-All paths are in github.com/sHyanorn/backtest-lab at commit 024e743.
+All paths are in github.com/sHyanorn/backtest-lab at commit 024e743, except in the rows marked 8f11090, which are at commit 8f11090.
 
 | Number | Source |
 |---|---|
@@ -10,7 +10,7 @@ All paths are in github.com/sHyanorn/backtest-lab at commit 024e743.
 | PBO 0.42 (64 settings) and 0.72 (17 settings) | docs/DEMO.md:44; results/posthoc/long_only.json (`searches.<name>.pbo.long_only_half` 0.418 and 0.720) |
 | 12,870 of 12,870 and 12,869 of 12,870 splits | docs/DEMO.md:42; results/posthoc/long_only.json (`searches.<name>.cscv.long_only_winner_share` 1.0 and 0.99992, of 12,870) |
 | Sharpe ranges 0.49–0.80, 0.02–0.51, 0.54–0.79, 0.01–0.53 | docs/DEMO.md:40-41 |
-| Long-only half no better than a coin flip | README.md:20; docs/DEMO.md:46 |
+| Long-only half: picking the in-sample best is not shown to beat picking at random | 8f11090: README.md:23; docs/DEMO.md:225 |
 | Few settings make ranks coarse | docs/METHODS.md:208 |
 | Post hoc, exploratory | docs/DEMO.md:34; docs/DECISIONS.md:180-184 (D029) |
 | SPY 1993 to October 2026; samples start January and August 1994; 1 bp fees, 5 bps slippage | docs/DEMO.md:3, 60; docs/DECISIONS.md:117 (D021) |

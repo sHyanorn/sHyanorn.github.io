@@ -8,13 +8,13 @@ math: false
 draft: false
 ---
 
-**This is a self-assessment.** Every finding below comes from the project's own reviews and tests. Where the findings log says "independent review", it means a separate review pass within the project. No outside party has audited vault-share.
+**This is a self-assessment.** Every finding below comes from the project's own reviews and tests. No outside party has audited vault-share.
 
-vault-share is an end-to-end encrypted file sharing service. The browser encrypts a file before upload, and the key travels only in the part of the link after the `#`, which browsers never send. In a project like this, the cryptography is the obvious place to look for security bugs. The findings log holds 55 entries, and none of the five rated High involves a cipher, a key derivation or a nonce. Four are about the lifecycle of an upload: what happens when it races a delete, a retry, a timeout or another upload. The fifth came from cleanup when the database and the storage disagreed. A second group of findings had a common shape, a limit that was checked before an attempt and counted after it, which concurrent requests could slip past.
+vault-share is an end-to-end encrypted file sharing service. The browser encrypts a file before upload, and the key travels only in the part of the link after the `#`, which browsers never send. In a project like this, the cryptography is the obvious place to look for security bugs. The findings log holds 70 entries, and none of the five rated High involves a cipher, a key derivation or a nonce. Four are about the lifecycle of an upload: what happens when it races a delete, a retry, a timeout or another upload. The fifth came from cleanup when the database and the storage disagreed. A second group of findings had a common shape, a limit that was checked before an attempt and counted after it, which concurrent requests could slip past.
 
 ## How the findings were found
 
-The log records the source of each finding. Most came from independent reviews of milestones M2 to M7 or from an adversarial re-check of the fixes for earlier findings. Others came from a pass against the OWASP Top 10:2025 using black-box and browser test scripts, a production readiness review and a code review, two from a simplification review, and one came up while fixing another finding. Fixes such as those for F26, F38 and F39 record tests or measurements from before and after.
+The log records the source of each finding. Most came from reviews of milestones M2 to M7 or from an adversarial re-check of the fixes for earlier findings. Others came from a pass against the OWASP Top 10:2025 using black-box and browser test scripts, a production readiness review and a code review, two from a simplification review, one from a second implementation of the share format, one from an end-to-end test, and one came up while fixing another finding. Fixes such as those for F26, F38 and F39 record tests or measurements from before and after.
 
 ## Four High findings in the upload path
 
@@ -49,7 +49,7 @@ The only finding filed under Cryptographic Failures (A04:2025), F20, was a misma
 
 - **Self-assessed.** The findings come from the project's own milestone reviews, adversarial re-checks of fixes, a test pass against the OWASP Top 10:2025, a production readiness review and a code review. No external audit has been done, and an outside reviewer may well find problems of a different kind, cryptographic ones included.
 - **Severity is the project's own.** Each rating follows the impact on the project's own threat model. A different model would rank some of them differently.
-- **No cryptographic findings.** None was found, which does not show that none exists. The RFC test vectors show the record format is implemented as specified; they say nothing about side channels or about how the keys are used beyond the file format.
+- **No cryptographic weakness found.** One finding, F70 (Low), was at a key derivation's input: a share password typed in another Unicode form did not open its link. That none was found does not show that none exists. The RFC test vectors show the record format is implemented as specified; they say nothing about side channels or about how the keys are used beyond the file format.
 - **Scanner results say little here.** gosec, govulncheck, npm audit and Semgrep report 0 issues on the source at commit a277b92; govulncheck on the Caddy binary reports 4 advisories, accepted as F22. Nothing here shows whether the scanners would have caught the findings above.
 - **Known gaps remain.** A compromised server can serve JavaScript that steals keys, as with most web-based encryption tools, and the server sees each file's size and access times.
 

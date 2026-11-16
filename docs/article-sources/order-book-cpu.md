@@ -2,18 +2,19 @@
 
 Article: `src/content/articles/order-book-cpu.mdx`.
 
-All paths are in github.com/sHyanorn/matching-engine at commit d13e727.
+All paths are in github.com/sHyanorn/matching-engine at commit d13e727, except in the rows marked 3ab6a5c, which are at commit 3ab6a5c.
 
 | Number | Source |
 |---|---|
-| 144 to 198 ns per command; 5.05M to 6.95M commands/s; 1M resting orders | docs/BENCHMARKS.md:13-18 |
+| 144 to 198 ns per command; 5.05M to 6.95M commands/s; 1M resting orders; the book before D038 and D039 | docs/BENCHMARKS.md:13-18; 3ab6a5c: docs/BENCHMARKS.md:22; bench-results/core-current/benchstat.txt:7-12, 28-33 |
 | 39 µs (50k/s) and 95 µs (10k/s) engine CPU per request | docs/BENCHMARKS.md:38, 44 |
 | Fixed costs shared by more requests | docs/BENCHMARKS.md:50 |
 | About 2 cores at 50k/s | docs/BENCHMARKS.md:49 |
 | Profile at 25k/s: 19% syscalls, 14% decoding, 9% key check, ~10% GC, ~10% matching goroutine | docs/BENCHMARKS.md:82, 86 |
 | Profiles from the slower VM | docs/BENCHMARKS.md:82; bench-results/m5-opt/cpu-before.pprof and cpu-after.pprof, whose `Time` headers (2026-11-05 10:17 UTC) fall between the slower-VM sweeps (78c4715, 10:16:40) and the report (f61a60d, 10:21:12) |
 | Valid run: 99% of rate sent, no failed request, every trade pushed once in order | docs/BENCHMARKS.md:30 |
-| `Book.Apply` 1.4% to 2% of the engine's CPU across the profiles before and after both changes; 0.6 allocations per command; pooling not done | docs/BENCHMARKS.md:82, 115, 119 |
+| `Book.Apply` 1.4% to 2% of the engine's CPU across the profiles before and after both changes | docs/BENCHMARKS.md:82, 115 |
+| The book's own order index and node reuse came later; the end-to-end figures were not measured again | 3ab6a5c: docs/BENCHMARKS.md:11, 149; docs/DECISIONS.md:236 (D038), 245 (D039) |
 | One goroutine per symbol (D003) | docs/DECISIONS.md:19 |
 | Three prototypes: red-black tree, skip list, sorted slice; same model tests and benchmarks | bench-results/d004/README.md:12-13, 30; docs/DECISIONS.md:27 (D004) |
 | D004 prototypes on a separate VM of the same type | bench-results/d004/README.md:5 |
@@ -39,6 +40,6 @@ All paths are in github.com/sHyanorn/matching-engine at commit d13e727.
 | Pauses up to 53 ms | docs/BENCHMARKS.md:41, 51 |
 | Stall about 128 ms on the slower VM | bench-results/m5-e2e/after-fsync/rate-10000-3.json (`latency_us.hiccup.max` 128,483) |
 | Spec target 5 ms at 50,000 orders/s (~71k requests/s); under 5 ms up to 15k/s | docs/BENCHMARKS.md:49 |
-| Replay 534 ns per command, 3.5× `Book.Apply`; a day at 10k/s ≈ 8 minutes; page cache | docs/BENCHMARKS.md:125-126 |
-| Book ≈ 30% of replay | derived: 1 / 3.5 ≈ 0.29 |
+| Replay 534 ns per command, 3.7× `Book.Apply`, both before D038 and D039; a day at 10k/s ≈ 8 minutes; page cache | 3ab6a5c: docs/BENCHMARKS.md:155-156 |
+| Book ≈ 27% of replay | derived: 1 / 3.7 ≈ 0.27 |
 | docs/BENCHMARKS.md:51 at 1097d29 placed the 128 ms stall on the headline VM | Corrected in 1d50110: it was the slower VM |

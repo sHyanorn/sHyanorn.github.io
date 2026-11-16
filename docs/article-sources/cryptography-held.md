@@ -2,12 +2,13 @@
 
 Article: `src/content/articles/cryptography-held.mdx`.
 
-All paths are in github.com/sHyanorn/vault-share at commit d5f69e6.
+All paths are in github.com/sHyanorn/vault-share at commit d5f69e6, except in the rows marked af93346, which are at commit af93346.
 
 | Number or claim | Source |
 |---|---|
-| 55 findings; five High (F1, F2, F3, F26, F47) | docs/security/FINDINGS.md:5-61 (table; rows 7, 8, 9, 32, 53) |
-| How each finding was found: independent reviews of milestones M2 to M7 and adversarial re-checks of fixes (38 of 55), the OWASP Top 10:2025 pass, a production readiness review, a code review, two from a simplification review, one while fixing F43 | docs/security/FINDINGS.md:7-61 ("Found by" column) |
+| 70 findings; five High (F1, F2, F3, F26, F47) | af93346: docs/security/FINDINGS.md:5-76 (table; rows 7, 8, 9, 32, 53) |
+| How each finding was found: reviews of milestones M2 to M7 and adversarial re-checks of fixes (38 of 70), the OWASP Top 10:2025 pass, a production readiness review, a code review, two from a simplification review, one from a second implementation of the share format, one from an end-to-end test, one while fixing F43 | af93346: docs/security/FINDINGS.md:7-76 ("Found by" column) |
+| F70 (Low): a share password typed in another Unicode form did not open its link; the input of the key derivation | af93346: docs/security/FINDINGS.md:76, 360-362 |
 | Before and after tests for F26, F38, F39 | docs/security/FINDINGS.md:166-167, 215, 219 |
 | Black-box and browser test scripts | docs/security/TEST_REPORT.md:29-31 |
 | F1 details | docs/security/FINDINGS.md:63-65 |
