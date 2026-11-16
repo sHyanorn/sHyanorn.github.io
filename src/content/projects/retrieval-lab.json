@@ -251,8 +251,8 @@
           "zh": "索引用 Bleve，打分用 Lucene 的公式"
         },
         "body": {
-          "en": "Bleve does the analysis and holds the inverted index. The score is a port of Lucene's `BM25Similarity`, computed from Bleve's postings, with Lucene's lossy one-byte encoding of the document length. In v2.6.3 Bleve's own BM25 differs from Lucene's in five ways: among them, it takes the square root of the term frequency, and its average length is built from per-segment counts of distinct terms, not from lengths, so it changes when segments merge.",
-          "zh": "Bleve 负责分析文本并保存倒排索引。分数是移植过来的 Lucene `BM25Similarity`，在 Bleve 的倒排表上计算，文档长度用 Lucene 那种有损的单字节编码。在 v2.6.3 里，Bleve 自带的 BM25 与 Lucene 的有五处不同，其中两处：它对词频取平方根；它的平均长度由各段里不同词项的个数算出，不是由长度算出，所以段合并时会变。"
+          "en": "Bleve does the analysis and holds the inverted index. The score is a port of Lucene's `BM25Similarity`, computed from Bleve's postings, with Lucene's lossy one-byte encoding of the document length. In v2.6.3 Bleve's own BM25 differs from Lucene's in at least seven ways: among them, it takes the square root of the term frequency, and its average length is built from per-segment counts of distinct terms, not from lengths, so it changes when segments merge.",
+          "zh": "Bleve 负责分析文本并保存倒排索引。分数是移植过来的 Lucene `BM25Similarity`，在 Bleve 的倒排表上计算，文档长度用 Lucene 那种有损的单字节编码。在 v2.6.3 里，Bleve 自带的 BM25 与 Lucene 的至少有七处不同，其中两处：它对词频取平方根；它的平均长度由各段里不同词项的个数算出，不是由长度算出，所以段合并时会变。"
         }
       },
       {

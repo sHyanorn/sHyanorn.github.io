@@ -24,7 +24,7 @@ All paths are in github.com/sHyanorn/push-lab at commit 937ad77.
 | Pipeline: two-tower recall with an ANN index, coarse and fine ranking, uplift models, delivery policy for send, slot and copy; 4 CPU cores | docs/SPEC.md:5, 11-12; README.md:77 |
 | Notebook and static report | docs/SPEC.md:226-227 |
 | Story registered as a hypothesis before the simulations; comparisons fixed in advance and reported as they came out | docs/SPEC.md:18-24 |
-| No dataset links push sends to in-app use; simulation on video feed data; uplift trials are e-mail and ads | docs/SPEC.md:216-217 |
+| Simulation on video feed data; uplift trials are e-mail and ads | docs/SPEC.md:216-217 |
 | Tiers A, B and C and what each rests on | docs/SPEC.md:89-93; README.md:12-16 |
 | Diagram and description: download with checksums, Parquet, raw data not committed | README.md:82; docs/DECISIONS.md:81 (D003) |
 | Diagram and description: two-tower and faiss recall, coarse rank top N by the two-tower score, LightGBM fine rank top-1 | docs/SPEC.md:143-155; docs/DECISIONS.md:108 (D008) |

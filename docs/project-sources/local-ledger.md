@@ -2,7 +2,7 @@
 
 Content: `src/content/projects/local-ledger.json`.
 
-All paths are in github.com/sHyanorn/local-ledger at commit 4c28d63.
+All paths are in github.com/sHyanorn/local-ledger at commit 4c28d63, except in the rows marked 49a0b6a, which are at commit 49a0b6a.
 
 | Number or claim | Source |
 |---|---|
@@ -35,6 +35,7 @@ All paths are in github.com/sHyanorn/local-ledger at commit 4c28d63.
 | D016: new view on unlock, lock and committed change; old renderer exits; strings and DOM; lock while locked; e2e asserts the exit | docs/DECISIONS.md:94-95 |
 | D025: fingerprint of date, amount, description and occurrence, per account, YNAB's `import_id`; possible duplicates within 4 days, unselected; batch, undo | docs/DECISIONS.md:146 |
 | D027: transfers in two accounts; same currency, opposite amounts, 4 days; automatic pairing rules; groups wait; a Transfer category breaks silently | docs/DECISIONS.md:155-156 |
+| D046: an import pairs a candidate only when its descriptions show a transfer, one naming the other account or both using a transfer word; any other candidate waits | 49a0b6a: docs/DECISIONS.md:262 (D046) |
 | D009: `app://local-ledger`, GET only, no path outside the build; CSP on every response | docs/DECISIONS.md:48 |
 | D009: windows, navigation, redirects, webviews, permissions refused; spellcheck dictionary download; net log | docs/DECISIONS.md:49 |
 | Bank formats: no published columns; open-source parsers where two agree; sample files; accepted variations; not checked against real exports | docs/DECISIONS.md:140; README.md:50 |

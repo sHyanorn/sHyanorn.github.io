@@ -61,7 +61,6 @@ Items 1 to 4. All paths are in push-lab.
 | Post hoc, over ten-minute blocks, the intervals of IPS (0.789 to 1.004) and DR (0.796 to 1.006) contain the known value | README.md:55; docs/DECISIONS.md:620-621 (D063) |
 | The registered verdict stands | README.md:55; docs/DECISIONS.md:617, 625 (D063) |
 | Simulator response model fitted on KuaiRand random exposures | docs/SPEC.md:50, 182 |
-| No public dataset links push sends to later behaviour | docs/METHODS.md:267; docs/SPEC.md:216; docs/DECISIONS.md:91 |
 | Tiers: A randomized real data, B validated off-policy estimate, C simulator with a sweep | README.md:12-16; docs/SPEC.md:89-93; docs/DECISIONS.md:77 (D002) |
 | Comparisons are pre-registered before the simulations run and reported as they come out | docs/SPEC.md:18; docs/DECISIONS.md:199 (D020), 408 (D043) |
 | A pre-registered ranking result went the other way: fine ranker click GAUC 0.545 against the two-tower score's 0.598 (C2) | docs/DECISIONS.md:201 (D020); README.md:55 |

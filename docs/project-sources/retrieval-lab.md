@@ -2,7 +2,7 @@
 
 Content: `src/content/projects/retrieval-lab.json`. Figures: `scripts/figures.ts`.
 
-All paths are in github.com/sHyanorn/retrieval-lab at commit 3322c11.
+All paths are in github.com/sHyanorn/retrieval-lab at commit 3322c11, except in the rows marked 9195dc3, which are at commit 9195dc3.
 
 | Number or claim | Source |
 |---|---|
@@ -29,7 +29,7 @@ All paths are in github.com/sHyanorn/retrieval-lab at commit 3322c11.
 | Architecture, description: `scripts/data.sh` downloads the six BEIR datasets and checks them by SHA-256. `cmd/bm25` indexes the title … | README.md:5, 15; docs/BENCHMARKS.md:36, 40, 93, 112, 117-119; docs/DECISIONS.md:13 (D002), 20 (D003), 78 (D011); docs/SPEC.md:17; cmd/table/dense.go:51-63 |
 | Decision: The anchors and the tolerance come first | docs/DECISIONS.md:27-28 (D004); docs/SPEC.md:28, 30 |
 | Decision: Metrics in Go, checked against trec_eval | docs/DECISIONS.md:20-21 (D003) |
-| Decision: Bleve holds the index; the scoring is Lucene's | docs/DECISIONS.md:33-39 (D005) |
+| Decision: Bleve holds the index; the scoring is Lucene's | docs/DECISIONS.md:33-39 (D005); at least seven differences, D005's five and two more: 9195dc3: docs/BENCHMARKS.md:93, 95-101 (V1 to V7) |
 | Decision: Document text and length, read off Pyserini's vectors | docs/DECISIONS.md:72-73 (D010) |
 | Decision: CI checks the dense results by tolerance, not by checksum | docs/DECISIONS.md:85-86 (D012) |
 | Challenge: Bleve's BM25 is not Lucene's, and varies between builds | docs/BENCHMARKS.md:78, 83, 86; docs/DECISIONS.md:59-60 (D008) |

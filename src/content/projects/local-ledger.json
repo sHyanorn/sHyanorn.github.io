@@ -179,8 +179,8 @@
           "zh": "把转账识别成一对交易"
         },
         "body": {
-          "en": "When both accounts' files are imported, a transfer appears twice, money out of one and the same money into the other. Two transactions can be one transfer when they are in different accounts of one currency, their amounts are exactly opposite and they are at most 4 days apart, since a transfer on a Friday can arrive on Tuesday. After an import, a candidate is paired on its own only when no other candidate shares a transaction with it, or when same-day pairs give every transaction exactly one partner; any other group waits for the user. A \"Transfer\" category, as some apps use, breaks silently when a category is mistyped.",
-          "zh": "两个账户的文件都导入后，同一笔转账会出现两次：一边转出，另一边转入同样的金额。两笔交易要算作一笔转账，必须位于同一币种的不同账户，金额正好相反，日期相差不超过 4 天，因为周五发起的转账可能周二才到账。导入之后，只有在没有别的候选与它共用交易，或者同一天的配对能让每笔交易恰好有一个对应方时，才会自动配对；其他情况都留给用户决定。有些应用用一个“转账”类别来处理，可类别一旦选错，就会悄无声息地出错。"
+          "en": "When both accounts' files are imported, a transfer appears twice, money out of one and the same money into the other. Two transactions can be one transfer when they are in different accounts of one currency, their amounts are exactly opposite and they are at most 4 days apart, since a transfer on a Friday can arrive on Tuesday. After an import, such a pair is paired on its own only when both of these hold: its descriptions show a transfer, one naming the other account or both using a word such as \"payment\"; and no other such pair shares a transaction with it, or same-day pairs give every transaction exactly one partner. Any other pair waits for the user. A \"Transfer\" category, as some apps use, breaks silently when a category is mistyped.",
+          "zh": "两个账户的文件都导入后，同一笔转账会出现两次：一边转出，另一边转入同样的金额。两笔交易要算作一笔转账，必须位于同一币种的不同账户，金额正好相反，日期相差不超过 4 天，因为周五发起的转账可能周二才到账。导入之后，这样的一对要同时满足两点才会自动配对：一是描述显示这是转账，即一方写出了另一方的账户名，或者双方都用了“payment”之类的词；二是没有别的一对与它共用交易，或者同一天的配对能让每笔交易恰好有一个对应方。其他的都留给用户决定。有些应用用一个“转账”类别来处理，可类别一旦选错，就会悄无声息地出错。"
         }
       },
       {
