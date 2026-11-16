@@ -31,10 +31,10 @@
         }
       },
       {
-        "value": { "en": "68", "zh": "68" },
+        "value": { "en": "70", "zh": "70" },
         "label": {
-          "en": "security findings logged during development, a production readiness review and code review, 5 of them High; 61 fixed, 3 accepted, 4 open at Low or below",
-          "zh": "开发过程、生产就绪评审和代码评审中记录的安全问题，其中 5 个高危；61 个已修复，3 个评估后接受，4 个尚未修复，最高为低危"
+          "en": "security findings logged during development, a production readiness review and code review, 5 of them High; 63 fixed, 3 accepted, 4 open at Low or below",
+          "zh": "开发过程、生产就绪评审和代码评审中记录的安全问题，其中 5 个高危；63 个已修复，3 个评估后接受，4 个尚未修复，最高为低危"
         }
       },
       {

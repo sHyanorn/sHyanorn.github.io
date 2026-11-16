@@ -2,14 +2,14 @@
 
 Content: `src/content/projects/matching-engine.json`.
 
-Paths are in github.com/sHyanorn/matching-engine at commit d13e727, except in the rows marked 7de38f0, which are at commit 7de38f01f92154e861bc62858c6a6eac1e6bf7b6.
+Paths are in github.com/sHyanorn/matching-engine at commit d13e727, except in the rows marked 7de38f0, which are at commit 7de38f01f92154e861bc62858c6a6eac1e6bf7b6, and those marked 3ab6a5c, at commit 3ab6a5cd9356d1f9798b7974697e623dab79b18d.
 
 The Chinese text writes rates and counts in 万 (10k = 1 万, 1M = 100 万); every such figure is one of the numbers below.
 
 | Number | Source |
 |---|---|
 | Demo at 2,000 requests per second | README.md:5 |
-| 6.25M to 8.88M commands/s in the matching core on one symbol, measured on a noisy VM (± up to 36%) | 7de38f0: docs/BENCHMARKS.md:15-20, 22; README.md:15; bench-results/core-reuse/benchstat.txt:29-34 |
+| 6.25M to 8.88M commands/s in the matching core on one symbol, measured on a noisy VM where runs of one benchmark differ by up to 1.96 times | 7de38f0: docs/BENCHMARKS.md:15-20, 22; README.md:15; bench-results/core-reuse/benchstat.txt:29-34; 3ab6a5c: README.md:67 |
 | p99 1.76 ms at 10k/s, order to trade push | docs/BENCHMARKS.md:29, 38 |
 | 124 MiB with 1M resting orders | 7de38f0: README.md:18; docs/BENCHMARKS.md:24 (123.7 MiB); bench-results/core-reuse/benchstat.txt:79 |
 | 93% of statements | README.md:16 at d13e727; `make cover` (Makefile:21-24) at 0f656b0 with Go 1.27.4 printed totals of 93.1% and 93.2% in two runs; 7de38f0: README.md:19, and `make cover` at 7de38f0 printed a total of 93.6% |

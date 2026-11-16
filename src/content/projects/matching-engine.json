@@ -25,8 +25,8 @@
       {
         "value": { "en": "6.25M–8.88M", "zh": "625 万–888 万" },
         "label": {
-          "en": "commands per second through the matching core on one symbol, measured on a noisy VM (± up to 36%)",
-          "zh": "撮合核心在单个交易对上每秒处理的命令数，在一台噪声较大的虚拟机上测得（± 最高 36%）"
+          "en": "commands per second through the matching core on one symbol, measured on a noisy VM, where runs of one benchmark differ by up to 1.96 times",
+          "zh": "撮合核心在单个交易对上每秒处理的命令数，在一台噪声较大的虚拟机上测得，同一基准的各次运行最多相差 1.96 倍"
         }
       },
       {

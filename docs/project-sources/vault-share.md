@@ -2,7 +2,7 @@
 
 Content: `src/content/projects/vault-share.json`.
 
-All paths are in github.com/sHyanorn/vault-share at commit bc14051.
+All paths are in github.com/sHyanorn/vault-share at commit bc14051, except in the rows marked af93346, which are at commit af93346.
 
 | Number or claim | Source |
 |---|---|
@@ -11,7 +11,7 @@ All paths are in github.com/sHyanorn/vault-share at commit bc14051.
 | Web Crypto | docs/DECISIONS.md:7-9 (D002) |
 | Demo: a file shared for one download, the link and the delete link, one download, the link gone | README.md:5; docs/demo.gif (frames 47 to 60 show "1 download" and the delete link; the last frames show the file gone) |
 | 0 of 16 requests carried the fragment, the secret, the file or metadata key, the file name or a slice of the plaintext; raw, hex, base64 at every alignment, percent- and form-encoded; bodies captured; auth key once in the create request | docs/security/TEST_REPORT.md:178 |
-| 68 findings, logged during development, a production readiness review and code review; 5 High (F1, F2, F3, F26, F47); 61 fixed, F20 and F62 in documentation; 3 accepted (F22, F40, F64); 4 open (F52 to F55), the highest Low | docs/security/FINDINGS.md:5-74 (rows 7, 8, 9, 32, 53; 26, 68; 28, 46, 70; 58-61; "Found by" column) |
+| 70 findings, logged during development, a production readiness review and code review; 5 High (F1, F2, F3, F26, F47); 63 fixed, F20 and F62 in documentation; 3 accepted (F22, F40, F64); 4 open (F52 to F55), the highest Low | af93346: docs/security/FINDINGS.md:5-76 (rows 7, 8, 9, 32, 53; 26, 68; 28, 46, 70; 58-61; "Found by" and Status columns) |
 | 171 black-box checks on the Compose stack; 30 browser checks | docs/security/TEST_REPORT.md:453, 455 (section 10, CI run 43536906405) |
 | 173 Go tests with `-race`, S3 tests included; 113 Vitest tests | docs/security/TEST_REPORT.md:450, 452 (section 10, CI run 43536906405) |
 | Self-assessment against the OWASP Top 10:2025 on instances the tester operated | docs/security/TEST_REPORT.md:3 |

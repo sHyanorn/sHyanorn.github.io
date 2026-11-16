@@ -32,7 +32,7 @@ The intro, then the three areas.
 | Backend: Go limit order book | matching-engine README.md:3; docs/DECISIONS.md:5-8 (D001) |
 | Backend: write-ahead command log | matching-engine README.md:3, 42; docs/DECISIONS.md:101-103 (D017) |
 | Backend: open-loop load testing | matching-engine docs/DECISIONS.md:179-181 (D030); docs/BENCHMARKS.md:28 |
-| Backend: 6.25M to 8.88M commands/s in the matching core, measured on a noisy VM (± up to 36%) | matching-engine at 7de38f0: docs/BENCHMARKS.md:15-20, 22; README.md:15 |
+| Backend: 6.25M to 8.88M commands/s in the matching core, measured on a noisy VM where runs of one benchmark differ by up to 1.96 times | matching-engine at 7de38f0: docs/BENCHMARKS.md:15-20, 22; README.md:15; at 3ab6a5c: README.md:67 |
 | Backend: p99 1.76 ms at 10k requests/s, from order to trade push | matching-engine docs/BENCHMARKS.md:29, 38 |
 | Backend: 50k requests/s is near saturation, at 41 ms | matching-engine at d13e727: README.md:14; docs/BENCHMARKS.md:44, 58 |
 
