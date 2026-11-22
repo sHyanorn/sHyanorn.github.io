@@ -62,6 +62,7 @@ Items 1 to 4. All paths are in push-lab.
 | The registered verdict stands | README.md:55; docs/DECISIONS.md:617, 625 (D063) |
 | Simulator response model fitted on KuaiRand random exposures | docs/SPEC.md:50, 182 |
 | Tiers: A randomized real data, B validated off-policy estimate, C simulator with a sweep | README.md:12-16; docs/SPEC.md:89-93; docs/DECISIONS.md:77 (D002) |
+| On Duolingo's randomized notification logs the template bandit beats uniform choice by 0.00174 (0.00126 to 0.00221), Tier A, resting on uniform logged template choice | push-lab at bc55dc0: README.md:6, 18, 29, 63; docs/DECISIONS.md:779 (D080); docs/METHODS.md:790 |
 | Comparisons are pre-registered before the simulations run and reported as they come out | docs/SPEC.md:18; docs/DECISIONS.md:199 (D020), 408 (D043) |
 | A pre-registered ranking result went the other way: fine ranker click GAUC 0.545 against the two-tower score's 0.598 (C2) | docs/DECISIONS.md:201 (D020); README.md:55 |
 

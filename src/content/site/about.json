@@ -19,8 +19,8 @@
           "zh": "离策略评估（IPS、DR）先在 Open Bandit 数据集上对照已知答案检验；在完整活动数据上，按登记的曝光重采样区间没有估计器通过，因此项目不报告依赖它的结果。事后按 10 分钟时间块重采样，两者的区间都包含已知值，登记的判定不变。"
         },
         {
-          "en": "A simulator fitted on KuaiRand random exposures, with results labelled by evidence tier (A real data, B checked estimator, C simulator only).",
-          "zh": "在 KuaiRand 随机曝光上拟合的模拟器；每个结果按证据等级标注（A 真实数据，B 经检验的估计器，C 仅在模拟器中成立）。"
+          "en": "A simulator fitted on KuaiRand random exposures, with results labelled by evidence tier (A real data, B checked estimator, C simulator only). On Duolingo's randomized notification logs, the project's template bandit beats uniform choice by 0.00174 (0.00126 to 0.00221) in two-hour completion per notification (Tier A, resting on the logged template choice being uniform).",
+          "zh": "在 KuaiRand 随机曝光上拟合的模拟器；每个结果按证据等级标注（A 真实数据，B 经检验的估计器，C 仅在模拟器中成立）。在 Duolingo 随机化的通知日志上，该项目的模板 bandit 比均匀选择使每条通知两小时内的完成率高 0.00174（0.00126 到 0.00221）（A 级，依赖于日志中的模板选择是均匀的）。"
         },
         {
           "en": "Comparisons registered before the simulations and reported as they came out, including a pre-registered ranking result that went the other way.",
