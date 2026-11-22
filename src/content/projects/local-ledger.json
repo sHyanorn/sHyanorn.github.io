@@ -90,7 +90,7 @@
     },
     "source": {
       "label": { "en": "Decision log", "zh": "决策记录" },
-      "url": "https://github.com/sHyanorn/local-ledger/blob/49a0b6a9dc6744adb43a4a09da972535b881ba5f/docs/DECISIONS.md"
+      "url": "https://github.com/sHyanorn/local-ledger/blob/82caeac92348c24e2d7ae8f78a9518e48b2e7398/docs/DECISIONS.md"
     }
   },
   "problem": [
@@ -118,9 +118,9 @@
         "en": "CSV in; Excel, PDF out",
         "zh": "导入 CSV，导出 Excel、PDF"
       },
-      "main": { "en": "main process", "zh": "主进程" },
-      "ipc": { "en": "IPC handlers", "zh": "IPC 处理器" },
-      "checks": { "en": "sender and zod checks", "zh": "校验来源和参数" },
+      "main": { "en": "vault host", "zh": "保险库宿主" },
+      "ipc": { "en": "port handlers", "zh": "端口处理器" },
+      "checks": { "en": "zod checks", "zh": "校验参数" },
       "vault": { "en": "vault", "zh": "保险库" },
       "unseal": { "en": "Argon2id, data key", "zh": "Argon2id，数据密钥" },
       "data": { "en": "import, export", "zh": "导入、导出" },
@@ -128,13 +128,13 @@
       "sealed": { "en": "sealed data key", "zh": "封存的数据密钥" },
       "encrypted": { "en": "every page encrypted", "zh": "每一页都加密" },
       "backup": { "en": "encrypted backup", "zh": "加密备份" },
-      "ipcEdge": { "en": "IPC", "zh": "IPC" },
+      "ipcEdge": { "en": "port", "zh": "端口" },
       "importEdge": { "en": "import", "zh": "导入" },
       "exportEdge": { "en": "export", "zh": "导出" }
     },
     "description": {
-      "en": "The page runs in Chromium's sandbox with no Node.js and is served from `app://local-ledger` under a strict content security policy. It reaches the main process only through the typed `window.ledger` API that the preload script exposes, and every handler checks that the sender is the app's own page and validates the payload with zod. In the main process, the vault derives a key from the master password with Argon2id in a worker thread and unseals the data key kept in `vault.json`; the data key opens the database, `ledger-<n>.db`, every page of which is encrypted by SQLite3 Multiple Ciphers in the SQLCipher 4 format. Import, export and backups also run in the main process: a CSV file comes in only through the system open dialog, an export goes out only where the user picks in the system save dialog and is not encrypted, and a backup is the encrypted database with a sealed header.",
-      "zh": "页面运行在 Chromium 的沙箱里，没有 Node.js，由 `app://local-ledger` 提供，带严格的内容安全策略。它只能通过预加载脚本暴露的带类型的 `window.ledger` 接口与主进程通信，每个处理器都会核对发送方是否为应用自己的页面，并用 zod 校验参数。在主进程中，保险库在工作线程里用 Argon2id 从主密码派生出密钥，解开 `vault.json` 里封存的数据密钥；数据密钥再打开数据库 `ledger-<n>.db`，它的每一页都由 SQLite3 Multiple Ciphers 按 SQLCipher 4 格式加密。导入、导出和备份也在主进程中进行：CSV 文件只能经系统的打开对话框进来，导出文件只写到用户在系统保存对话框里选定的位置，并且不加密；备份就是加密的数据库本身，外加一个封存的文件头。"
+      "en": "The page runs in Chromium's sandbox with no Node.js and is served from `app://local-ledger` under a strict content security policy. It calls the vault only through the typed `window.ledger` API that the preload script exposes, over a port of its own to a utility process, the vault host, which validates every payload with zod; the main process takes two requests from the app's own pages, a port to the vault host and a lock. In the vault host, the vault derives a key from the master password with Argon2id in a worker thread and unseals the data key kept in `vault.json`; the data key opens the database, `ledger-<n>.db`, every page of which is encrypted by SQLite3 Multiple Ciphers in the SQLCipher 4 format. Import, export and backups also run in the host: a CSV file comes in through the system open dialog, which the main process shows, or dropped on the window, an export goes out only where the user picks in the system save dialog and is not encrypted, and a backup is the encrypted database with a sealed header. The main process keeps the windows, shows the dialogs, prints PDFs and handles the lock, which ends the host and the page's process.",
+      "zh": "页面运行在 Chromium 的沙箱里，没有 Node.js，由 `app://local-ledger` 提供，带严格的内容安全策略。它只能通过预加载脚本暴露的带类型的 `window.ledger` 接口调用保险库，走的是通向一个工具进程（保险库宿主）的专用端口，由宿主用 zod 校验每个参数；主进程接受应用自己页面的两种请求，一个通向保险库宿主的端口和一次锁定。在保险库宿主中，保险库在工作线程里用 Argon2id 从主密码派生出密钥，解开 `vault.json` 里封存的数据密钥；数据密钥再打开数据库 `ledger-<n>.db`，它的每一页都由 SQLite3 Multiple Ciphers 按 SQLCipher 4 格式加密。导入、导出和备份也在宿主中进行：CSV 文件经系统的打开对话框（由主进程显示）或拖放到窗口里进来，导出文件只写到用户在系统保存对话框里选定的位置，并且不加密；备份就是加密的数据库本身，外加一个封存的文件头。主进程负责窗口、对话框、打印 PDF 和处理锁定，锁定会结束宿主和页面的进程。"
     }
   },
   "decisions": {
@@ -151,14 +151,14 @@
         }
       },
       {
-        "id": "D016",
+        "id": "D047",
         "title": {
-          "en": "Locking replaces the page process",
-          "zh": "锁定即替换页面进程"
+          "en": "Locking ends the vault's process",
+          "zh": "锁定即结束保险库的进程"
         },
         "body": {
-          "en": "On every unlock, lock and committed password change, the main process loads the page in a new view and closes the old one, whose renderer process then exits, so no process that held a typed password or decrypted data outlives the change. Clearing a store cannot wipe what JavaScript strings and the DOM held; ending the process can. A lock replaces the page even when the vault is already locked, so a password typed but not submitted does not survive it, and the end-to-end suite asserts that the old process has exited.",
-          "zh": "每次解锁、锁定和成功修改密码时，主进程都在一个新视图里重新加载页面并关掉旧视图，旧的渲染进程随之退出，所以任何拿过输入的密码或解密数据的进程都不会活过这次切换。清空状态仓库抹不掉 JavaScript 字符串和 DOM 里留下的内容，结束进程可以。即使保险库已经锁着，锁定操作也会替换页面，这样输入了却没提交的密码也留不下来；端到端测试会断言旧进程确已退出。"
+          "en": "On every unlock, lock and committed password change, the main process loads the page in a new view and closes the old one, whose renderer process then exits (D016). Every lock also ends the vault host, the utility process that holds the vault, its database, imports and exports, so what it held goes with it. Clearing a store cannot wipe what JavaScript strings and the DOM held; ending a process releases them, though not by overwriting. A lock replaces the page even when the vault is already locked, so a password typed but not submitted does not survive it, and the end-to-end suite asserts that the old process has exited. In 0.2.1 the main process held the vault, and a test of every process's memory found in it after a lock at least the imported text and half of the data key on Linux, Windows and macOS, and on Linux also the master password and the sealing key. Now the main process still holds, after a lock, the page of a PDF export and copies of typed text, but none of the master password, and the host can keep data for up to 30 s while calls under way settle.",
+          "zh": "每次解锁、锁定和成功修改密码时，主进程都在一个新视图里重新加载页面并关掉旧视图，旧的渲染进程随之退出（D016）。每次锁定还会结束保险库宿主，也就是持有保险库、数据库、导入和导出的工具进程，它拿过的内容随之释放。清空状态仓库抹不掉 JavaScript 字符串和 DOM 里留下的内容，结束进程会释放它们，但不会覆写。即使保险库已经锁着，锁定操作也会替换页面，这样输入了却没提交的密码也留不下来；端到端测试会断言旧进程确已退出。在 0.2.1 中，保险库在主进程里，一项读取每个进程内存的测试在锁定之后，在 Linux、Windows 和 macOS 的主进程中都找到了导入的文本和数据密钥的一半（至少这些），在 Linux 上还找到了主密码和封存用的密钥。现在锁定之后，主进程里仍有 PDF 导出的页面和键入文本的副本，但没有主密码，宿主最多还会保留数据 30 秒，等进行中的调用结束。"
         }
       },
       {
@@ -195,7 +195,7 @@
         }
       }
     ],
-    "source": "https://github.com/sHyanorn/local-ledger/blob/49a0b6a9dc6744adb43a4a09da972535b881ba5f/docs/DECISIONS.md"
+    "source": "https://github.com/sHyanorn/local-ledger/blob/82caeac92348c24e2d7ae8f78a9518e48b2e7398/docs/DECISIONS.md"
   },
   "challenges": [
     {

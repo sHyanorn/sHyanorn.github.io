@@ -2,7 +2,7 @@
 
 Article: `src/content/articles/locking-ends-a-process.mdx`.
 
-All paths are in github.com/sHyanorn/local-ledger at commit ae08641.
+All paths are in github.com/sHyanorn/local-ledger at commit ae08641, except in the rows that start with "at 82caeac:", which are at that commit. `SD` is docs/SECURITY_DESIGN.md.
 
 | Number or claim | Source |
 |---|---|
@@ -24,3 +24,6 @@ All paths are in github.com/sHyanorn/local-ledger at commit ae08641.
 | Swap and hibernation; pages not locked | docs/SECURITY_DESIGN.md:66 |
 | Same-user malware out of scope; someone at the computer after the lock is in scope | docs/SECURITY_DESIGN.md:10, 15 |
 | Failed password change keeps its page | docs/SECURITY_DESIGN.md:56; docs/DECISIONS.md:94 (D016) |
+| Update note: since 0.3.0 the vault, its database, imports and exports run in a utility process, the vault host, which every lock ends; links to D047 and to the Memory section | at 82caeac: docs/DECISIONS.md:267-269 (D047); SD:83 (Memory), 85 |
+| Update note: the 0.2.1 memory test found after a lock at least the imported text and half of the data key on Linux, Windows and macOS, and on Linux also the master password and the sealing key | at 82caeac: SD:95; docs/DECISIONS.md:269, 272 |
+| Update note: dated 2026-11-22, the day v0.3.0 was published | Releases API, `published_at` of v0.3.0 (2026-11-22T01:47:06Z); tag commit 322a011 changes only docs/TASKS.md and the version in package.json and package-lock.json against 82caeac |
