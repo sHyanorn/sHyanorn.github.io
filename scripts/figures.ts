@@ -171,6 +171,15 @@ const seconds: Scale = {
   label: '',
 }
 
+/** Steam's times run up to about four times as long as the other datasets'. */
+const secondsSteam: Scale = {
+  min: 0,
+  max: 200,
+  ticks: [0, 50, 100, 150, 200],
+  format: fixed(0),
+  label: '',
+}
+
 export const FIGURES: Figure[] = [
   {
     file: 'recserve/kind-check',
@@ -452,6 +461,25 @@ export const FIGURES: Figure[] = [
           arm('MostPop', 0.0126, true),
         ],
       },
+      {
+        title: 'Steam',
+        scale: {
+          min: 0,
+          max: 0.08,
+          ticks: [0, 0.02, 0.04, 0.06, 0.08],
+          format: fixed(2),
+          label: '',
+        },
+        rows: [
+          arm('SASRec-CE', 0.0739),
+          arm('SASRec-SS', 0.0726),
+          arm('gSASRec', 0.073),
+          arm('BERT4Rec', 0.0718),
+          arm('SASRec-BCE', 0.0585),
+          arm('Transition', 0.0422, true),
+          arm('MostPop', 0.0265, true),
+        ],
+      },
     ],
   },
   {
@@ -475,16 +503,23 @@ export const FIGURES: Figure[] = [
           versus('gBCE', -8.0, -8.4, -7.5),
         ],
       },
+      {
+        title: 'Steam',
+        rows: [
+          versus('sampled softmax', -1.8, -2.5, -1.2),
+          versus('gBCE', -1.3, -2.0, -0.7),
+        ],
+      },
     ],
   },
   {
     file: 'seqrec-lab/time',
     title: 'Seconds of training to the target quality, seeds 1 to 5',
     gutter: 300,
-    scale: seconds,
     panels: [
       {
         title: 'MovieLens-1M',
+        scale: seconds,
         rows: [
           times('SASRec-CE', [30.9, 34.0, 34.5, 36.6, 38.2], '5 of 5'),
           times('SASRec-SS', [], '0 of 5 reach it'),
@@ -494,10 +529,21 @@ export const FIGURES: Figure[] = [
       },
       {
         title: 'Video_Games',
+        scale: seconds,
         rows: [
           times('SASRec-CE', [26.9, 27.7, 29.7, 30.9, 31.8], '5 of 5'),
           times('SASRec-SS', [25.5, 28.0, 33.9, 36.7], '4 of 5'),
           times('gSASRec', [], '0 of 5 reach it'),
+          times('SASRec-BCE', [], '0 of 5 reach it'),
+        ],
+      },
+      {
+        title: 'Steam',
+        scale: secondsSteam,
+        rows: [
+          times('SASRec-CE', [54.6, 56.6, 56.8, 58.2, 66.2], '5 of 5'),
+          times('SASRec-SS', [124.0, 125.2, 127.3, 129.0, 130.7], '5 of 5'),
+          times('gSASRec', [164.8, 167.6, 168.1, 173.4, 174.5], '5 of 5'),
           times('SASRec-BCE', [], '0 of 5 reach it'),
         ],
       },
