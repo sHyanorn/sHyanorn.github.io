@@ -2,7 +2,7 @@
 
 Article: `src/content/articles/open-bandit-shortfall.mdx`.
 
-All paths are in github.com/sHyanorn/ope-checks at commit 7a097af, except those prefixed `push-lab:`, which are in github.com/sHyanorn/push-lab at commit 937ad77. `q` is the `quantities` object of a result file; `all.json`, `women.json`, `men.json` and `pooled.json` are in `obd/results/`, and `units.json`, `features.json`, `propensities.json`, `blocks.json`, `lengths.json`, `distances.json` and `prior.json` in `obd/posthoc/results/`. `<L>` is a block length in minutes.
+All paths are in github.com/sHyanorn/ope-checks at commit 7a097af, except the rows that start with "at <commit>:", which are at that commit, and those prefixed `push-lab:`, which are in github.com/sHyanorn/push-lab at commit 937ad77. `q` is the `quantities` object of a result file; `all.json`, `women.json`, `men.json` and `pooled.json` are in `obd/results/`, and `units.json`, `features.json`, `propensities.json`, `blocks.json`, `lengths.json`, `distances.json` and `prior.json` in `obd/posthoc/results/`. `<L>` is a block length in minutes.
 
 | Number | Source |
 |---|---|
@@ -99,3 +99,5 @@ All paths are in github.com/sHyanorn/ope-checks at commit 7a097af, except those 
 | Commands | README.md:93, 95; obd/posthoc/README.md:6 |
 | The first run downloads the archive and the prior file and verifies their checksums | README.md:98 |
 | Every result file names the commit that produced it | README.md:11; `code_commit` in each result file |
+| Three public computations arrive at the same figure, two with a bootstrap interval below the on-policy value | at f05ba2a: docs/obd-results.md:109 (itsnjstyle27/counterfact: relative error of IPW 10.9% on Men's with the published prior as target, whole random log, no bootstrap; 1 - 0.109 = 0.891); obd/AMENDMENTS.md:60-66 (Correction, 2026-11-14, written after the results); obd/PREREGISTRATION.md:5, 24, 56 (the two cited computations); push-lab bc55dc0 results/ope_obd.json (full.validation.IPS 0.8152 to 0.9657) |
+| Intervals over ten-minute blocks cover as nominal under short dependence and fall short under dependence of an hour or a day, in simulation | at f05ba2a: obd_coverage/README.md:100 (M: ten-minute blocks cover 0.951), 102 (H: 0.907 on All, 0.850 on Women's; U: 0.883 and 0.830), 122, 135 (on Women's the ten-minute intervals are not shown to cover) |

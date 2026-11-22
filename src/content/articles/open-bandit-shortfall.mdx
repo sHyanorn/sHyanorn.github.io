@@ -13,7 +13,7 @@ The rules were committed before any outcome of All and Women's was computed. Men
 
 ## The benchmark and the 0.89
 
-The dataset holds one week of logs from two policies on ZOZOTOWN, uniform random and BTS, in three campaigns. The benchmark estimates the BTS click rate from the random log and compares it with the click rate of the BTS log. The BTS target comes from a published Beta prior by Monte Carlo draws, with no updates. On the full Men's campaign the IPS estimate is 0.891 of the on-policy value. Two public computations arrive at the same figure, each with a bootstrap interval for IPS that lies below the on-policy value: 0.815 to 0.966 of it in one, and 0.005612 to 0.006472 against 0.006743 in the other. They resample impressions or rows.
+The dataset holds one week of logs from two policies on ZOZOTOWN, uniform random and BTS, in three campaigns. The benchmark estimates the BTS click rate from the random log and compares it with the click rate of the BTS log. The BTS target comes from a published Beta prior by Monte Carlo draws, with no updates. On the full Men's campaign the IPS estimate is 0.891 of the on-policy value. Three public computations arrive at the same figure, two of them with a bootstrap interval for IPS that lies below the on-policy value: 0.815 to 0.966 of it in one, and 0.005612 to 0.006472 against 0.006743 in the other. Those two resample impressions or rows; the third uses the whole random log and no bootstrap. The registration cites the first two, and a correction made after the results records the third.
 
 ## Rows in these logs are not independent
 
@@ -76,7 +76,7 @@ All five were fixed after the results were known. For the block lengths and the 
 
 ## When this does not hold
 
-The statement covers these two campaigns, this target and an interval that respects the dependence in the logs. It does not say the estimate is unbiased, since the Men's ratio is 0.891 with an interval down to 0.790, and it makes no claim about the recorded propensities or the users of the two logs.
+The statement covers these two campaigns, this target and intervals over ten-minute blocks. In a separate simulation on the rows of the logs with simulated clicks (`obd_coverage/`), such intervals cover as nominal when dependence reaches a minute or two and fall short when it reaches an hour or a day, and on Women's the registered intervals are not shown to cover. It does not say the estimate is unbiased, since the Men's ratio is 0.891 with an interval down to 0.790, and it makes no claim about the recorded propensities or the users of the two logs.
 
 ## Reproduce
 

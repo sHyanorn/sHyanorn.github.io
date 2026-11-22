@@ -326,6 +326,23 @@
         "en": "A separately registered semi-synthetic study (`obd_coverage/`) keeps the rows of the logs and generates clicks from a known process, so that the coverage of a nominal 95% interval can be counted. With dependence that reaches one or two minutes, at the strength solved from published statistics of the logs, intervals of the IPS ratio on All and Women's cover 0.85 to 0.88 when rows or impressions are resampled and 0.945 to 0.953 with clock blocks of 5 to 180 minutes; this is an upper reading of short-range dependence: if part of the published variance ratio is a moving click rate, rows and impressions cover more. With added groups of sessions that span an hour, ten-minute blocks cover 0.907 on All and 0.850 on Women's, and with groups that span a day no block length is adequate. Both scenarios were tuned so that the true variance exceeds what ten-minute blocks see, so under-coverage by ten-minute blocks was expected there. On Women's the published widening of the intervals up to 180 minutes is more than the short-range scenario produces, so its ten-minute intervals are not shown to cover. The study does not show that the real logs have any of these structures.",
         "zh": "另一项单独登记的半合成研究（`obd_coverage/`）保留日志的每一行，按已知的过程生成点击，这样就能数出名义 95% 区间的覆盖率。依赖延伸到一两分钟、强度由日志的已发表统计量解出时，All 和 Women's 上 IPS 比值的区间按行或按曝光重采样覆盖 0.85 到 0.88，按 5 到 180 分钟的时钟块覆盖 0.945 到 0.953；这是对短程依赖的上限读法：已发表的方差比里如果有一部分来自点击率本身在变，按行和按曝光的覆盖率会更高。再加上跨一小时的会话组，十分钟块在 All 上覆盖 0.907，在 Women's 上覆盖 0.850；会话组跨一天时，没有任何块长达标。这两种情形本来就调成真实方差超过十分钟块能看到的部分，所以十分钟块在其中覆盖不足是意料之中的。Women's 上已发表的区间变宽（到 180 分钟为止）超出了短程情形能产生的范围，所以它的十分钟区间没有显示达到覆盖率。这项研究并没有表明真实日志具有其中任何一种结构。"
       }
+    },
+    {
+      "title": {
+        "en": "What the re-scoring labels cover",
+        "zh": "重新打分的标签适用范围"
+      },
+      "body": {
+        "en": "A further study, `obd_rescore`, re-scores two published estimator comparisons against `R_IPS`, the IPS of the evaluated target on the whole random log, which is unbiased for the target's value, as well as against `V_on`, the click rate of the BTS log. Its registration was committed before any code of the published comparisons was run on the dataset, and both replications are `reproduced`. On All, with ten-minute blocks and the target applied to its own (item, position) pairs, MIPS (w/ SLOPE) against IPS is `flips` against `R_IPS`: it is closer in 91 of 500 runs. On Men's, the interval of `BLUE - IPS` over 2,000 block replicates, 0.000107 to 0.000898, excludes 0, so \"BLUE remains unbiased\" is `contradicted` at the full size of the data, with the reward model and the target fixed; on All and Women's it is `not contradicted`, which does not show that BLUE is unbiased. `flips` does not show that MIPS (w/ SLOPE) is worse in general. The labels describe each protocol's resampling, with the references fixed at their full-data values, and rest on ten-minute blocks; the reward model of BLUE is fitted once on the full data.",
+        "zh": "另一项研究 `obd_rescore` 把两个已发表的估计器比较，按 `R_IPS` 重新打分，也按 `V_on`（BTS 日志的点击率）重新打分；`R_IPS` 是被评估目标在整个随机日志上的 IPS，对目标的价值无偏。它的预注册在已发表比较的任何代码于这份数据上运行之前提交，两个复现都是 `reproduced`。在 All 上，以 10 分钟时间块为单位、目标施加在各自的（物品，位置）对上时，MIPS (w/ SLOPE) 相对 IPS 在 `R_IPS` 之下是 `flips`：它在 500 次运行中有 91 次更接近。在 Men's 上，`BLUE - IPS` 在 2,000 次时间块重采样上的区间是 0.000107 到 0.000898，不含 0，所以“BLUE 保持无偏”在数据的完整规模下是 `contradicted`，奖励模型和目标固定；在 All 和 Women's 上是 `not contradicted`，这不能说明 BLUE 无偏。`flips` 不能说明 MIPS (w/ SLOPE) 总体上更差。标签描述的是每个协议的重采样，参照固定在全数据值，并以 10 分钟时间块为基础；BLUE 的奖励模型在全部数据上只拟合一次。"
+      },
+      "link": {
+        "label": {
+          "en": "Re-scoring results",
+          "zh": "重新打分的结果"
+        },
+        "url": "https://github.com/sHyanorn/ope-checks/blob/f05ba2a1033f29bb31bbecc1dc96371fd183c993/obd_rescore/README.md#results"
+      }
     }
   ],
   "repo": "https://github.com/sHyanorn/ope-checks",

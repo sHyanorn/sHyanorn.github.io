@@ -2,7 +2,7 @@
 
 Content: `src/content/projects/ope-checks.json`.
 
-All paths are in github.com/sHyanorn/ope-checks at commit 7a097af.
+All paths are in github.com/sHyanorn/ope-checks at commit 7a097af, except in the rows that start with "at <commit>:", which are at that commit.
 
 | Number or claim | Source |
 |---|---|
@@ -98,3 +98,4 @@ All paths are in github.com/sHyanorn/ope-checks at commit 7a097af.
 | Coverage: on Women's the published widening of the intervals up to 180 minutes is more than M produces (1.365 against a 97.5th percentile of 1.239), so its ten-minute intervals are not shown to cover | at 6a276af: obd_coverage/README.md:107, 114, 119; obd_coverage/results/coverage.json (`women.M.sd_of_ips_ratio.over_ten_minutes["180"]`; `reading.by_campaign.women["5_published_widening_above_M"]`) |
 | Coverage: the study does not show that the real logs have any of these structures | at 6a276af: obd_coverage/README.md:171 |
 | Report: technical report, PDF, its title | at c5ed86f: obd/report.pdf, title page |
+| Limit: registration before any run, replications reproduced, the two primary labels with their numbers, and the limits of the labels | at f05ba2a: README.md:85; obd_rescore/README.md:3, 8, 12, 22-23, 29-30, 115, 129-132 (limits); obd_rescore/results/replication.json, c1.json, c2.json, labels.json |
