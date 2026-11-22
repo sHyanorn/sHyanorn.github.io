@@ -141,6 +141,7 @@
 - Note: on the Linux machine that runs Lighthouse, Chinese pages spend about twice as long in style and layout as English ones, because it has none of the stack's CJK fonts and finds WenQuanYi Zen Hei through fontconfig; under the mobile preset's CPU slowdown this can cost a point of performance. Naming that font cut the time by a third, but readers' devices do not have it, so the stack stays as D010 sets it
 - Amendment 2026-11-11: mobile performance on the Chinese pages is the median of seven runs instead of three. On the live site their longest layout task runs after first contentful paint and counts as blocking time, and single runs of one page ranged from 85 to 100
 - Amendment 2026-11-11: the project page shown is ope-checks, since local-ledger is now an earlier project (D022), and the table covers 32 pages
+- Amendment 2026-11-22: the table covers 34 pages, with the seqrec-lab project page in both languages
 
 ## D020 Wide-screen layout
 - Date: 2026-11-09

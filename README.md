@@ -2,20 +2,20 @@
 
 [![CI](https://github.com/sHyanorn/sHyanorn.github.io/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/sHyanorn/sHyanorn.github.io/actions/workflows/ci.yml?query=branch%3Amain)
 
-Personal website of Aaron Yang, live at [shyanorn.github.io](https://shyanorn.github.io/). Built with Astro and TypeScript, with a hand-written WebGL2 and GLSL background, in English and in Chinese. On the live site at `32a0a9f` on 2026-11-11, Lighthouse scored each of the 32 pages in the table 100 in all four categories on the desktop preset; the lowest mobile medians are 97 for performance and 96 for accessibility. It needs Chrome and Edge 123, Firefox 120 or Safari 17.5 or later, with no fallback below them.
+Personal website of Aaron Yang, live at [shyanorn.github.io](https://shyanorn.github.io/). Built with Astro and TypeScript, with a hand-written WebGL2 and GLSL background, in English and in Chinese. On the live site at `75b83a0` on 2026-11-22, Lighthouse scored each of the 34 pages in the table 100 in all four categories on the desktop preset; the lowest mobile medians are 99 for performance and 96 for accessibility. It needs Chrome and Edge 123, Firefox 120 or Safari 17.5 or later, with no fallback below them.
 
 ## Results
 
 ### Lighthouse
 
-The live site at `32a0a9f` on 2026-11-11, with CI's settings ([D019](docs/DECISIONS.md)): the mobile preset three times per page, the median run kept, and the desktop preset once. Each cell is performance / accessibility / best practices / SEO. Mobile performance on the Chinese pages is the median of seven runs ([D020](docs/DECISIONS.md)).
+The live site at `75b83a0` on 2026-11-22, with CI's settings ([D019](docs/DECISIONS.md)): the mobile preset three times per page, the median run kept, and the desktop preset once. Each cell is performance / accessibility / best practices / SEO. Mobile performance on the Chinese pages is the median of seven runs ([D020](docs/DECISIONS.md)).
 
 | Page | Mobile | Desktop |
 | --- | --- | --- |
 | `/` | 100 / 100 / 100 / 100 | 100 / 100 / 100 / 100 |
 | `/zh/` | 99 / 100 / 100 / 100 | 100 / 100 / 100 / 100 |
 | `/about/` | 100 / 100 / 100 / 100 | 100 / 100 / 100 / 100 |
-| `/zh/about/` | 100 / 100 / 100 / 100 | 100 / 100 / 100 / 100 |
+| `/zh/about/` | 99 / 100 / 100 / 100 | 100 / 100 / 100 / 100 |
 | `/articles/` | 100 / 100 / 100 / 100 | 100 / 100 / 100 / 100 |
 | `/zh/articles/` | 100 / 100 / 100 / 100 | 100 / 100 / 100 / 100 |
 | `/articles/cryptography-held/` | 100 / 100 / 100 / 100 | 100 / 100 / 100 / 100 |
@@ -29,21 +29,23 @@ The live site at `32a0a9f` on 2026-11-11, with CI's settings ([D019](docs/DECISI
 | `/articles/order-book-cpu/` | 100 / 100 / 100 / 100 | 100 / 100 / 100 / 100 |
 | `/zh/articles/order-book-cpu/` | 100 / 100 / 100 / 100 | 100 / 100 / 100 / 100 |
 | `/projects/backtest-lab/` | 100 / 100 / 100 / 100 | 100 / 100 / 100 / 100 |
-| `/zh/projects/backtest-lab/` | 99 / 96 / 100 / 100 | 100 / 100 / 100 / 100 |
+| `/zh/projects/backtest-lab/` | 100 / 96 / 100 / 100 | 100 / 100 / 100 / 100 |
 | `/projects/local-ledger/` | 100 / 100 / 100 / 100 | 100 / 100 / 100 / 100 |
-| `/zh/projects/local-ledger/` | 99 / 96 / 100 / 100 | 100 / 100 / 100 / 100 |
+| `/zh/projects/local-ledger/` | 100 / 96 / 100 / 100 | 100 / 100 / 100 / 100 |
 | `/projects/matching-engine/` | 100 / 100 / 100 / 100 | 100 / 100 / 100 / 100 |
-| `/zh/projects/matching-engine/` | 98 / 100 / 100 / 100 | 100 / 100 / 100 / 100 |
+| `/zh/projects/matching-engine/` | 99 / 100 / 100 / 100 | 100 / 100 / 100 / 100 |
 | `/projects/ope-checks/` | 100 / 100 / 100 / 100 | 100 / 100 / 100 / 100 |
-| `/zh/projects/ope-checks/` | 99 / 100 / 100 / 100 | 100 / 100 / 100 / 100 |
+| `/zh/projects/ope-checks/` | 100 / 100 / 100 / 100 | 100 / 100 / 100 / 100 |
 | `/projects/push-lab/` | 100 / 100 / 100 / 100 | 100 / 100 / 100 / 100 |
-| `/zh/projects/push-lab/` | 100 / 96 / 100 / 100 | 100 / 100 / 100 / 100 |
+| `/zh/projects/push-lab/` | 99 / 100 / 100 / 100 | 100 / 100 / 100 / 100 |
 | `/projects/recserve/` | 100 / 100 / 100 / 100 | 100 / 100 / 100 / 100 |
 | `/zh/projects/recserve/` | 100 / 100 / 100 / 100 | 100 / 100 / 100 / 100 |
 | `/projects/retrieval-lab/` | 100 / 100 / 100 / 100 | 100 / 100 / 100 / 100 |
-| `/zh/projects/retrieval-lab/` | 97 / 100 / 100 / 100 | 100 / 100 / 100 / 100 |
+| `/zh/projects/retrieval-lab/` | 100 / 100 / 100 / 100 | 100 / 100 / 100 / 100 |
+| `/projects/seqrec-lab/` | 100 / 100 / 100 / 100 | 100 / 100 / 100 / 100 |
+| `/zh/projects/seqrec-lab/` | 100 / 100 / 100 / 100 | 100 / 100 / 100 / 100 |
 | `/projects/vault-share/` | 100 / 100 / 100 / 100 | 100 / 100 / 100 / 100 |
-| `/zh/projects/vault-share/` | 97 / 100 / 100 / 100 | 100 / 100 / 100 / 100 |
+| `/zh/projects/vault-share/` | 99 / 100 / 100 / 100 | 100 / 100 / 100 / 100 |
 
 ### Screenshots
 
