@@ -118,6 +118,11 @@
         "en": "CSV in; Excel, PDF out",
         "zh": "导入 CSV，导出 Excel、PDF"
       },
+      "shell": { "en": "main process", "zh": "主进程" },
+      "duties": {
+        "en": "windows, dialogs, printing, lock",
+        "zh": "窗口、对话框、打印、锁定"
+      },
       "main": { "en": "vault host", "zh": "保险库宿主" },
       "ipc": { "en": "port handlers", "zh": "端口处理器" },
       "checks": { "en": "zod checks", "zh": "校验参数" },

@@ -197,6 +197,12 @@ const sections = headings.filter((h) => h.depth === 2)
     margin-top: var(--space-1);
   }
 
+  .prose :global(blockquote) {
+    margin-inline: 0;
+    padding-left: var(--space-2);
+    border-left: 2px solid var(--color-line);
+  }
+
   .prose :global(a) {
     color: var(--color-accent);
     transition: color var(--duration-fast) var(--ease-out);

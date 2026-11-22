@@ -29,7 +29,9 @@ All paths are in github.com/sHyanorn/local-ledger at commit 4c28d63, except in t
 | Diagram: import, export and backups run in the vault host; a CSV file comes in through the open dialog the main process shows, or dropped on the window; export only where the save dialog picks, not encrypted; backup is the encrypted database with a sealed header | at 82caeac: SD:85, 121, 128, 136; docs/DECISIONS.md:269 (D047) |
 | Diagram: the main process keeps the windows, shows the dialogs, prints PDFs and handles the lock, which ends the host and the page's process | at 82caeac: SD:76, 85; docs/DECISIONS.md:269 (D047) |
 | Diagram labels: vault host, port handlers, zod checks, port; the host holds the vault, database, import, export, rules and backups | at 82caeac: docs/SPEC.md:55-63, 67; SD:85, 147 |
-| Diagram paths | src/renderer, src/preload, src/main, src/main/vault, src/main/import |
+| Diagram: the main process box (windows, dialogs, printing, lock) and its arrow to the vault host: it starts the host and ends it at every lock, and shows dialogs and prints PDFs for it | at 82caeac: docs/SPEC.md:57-62; SD:85; src/main/host-process.ts:1-3; src/main/app.ts:34-37, 51-58 |
+| Diagram paths | src/renderer, src/preload, src/main/vault, src/main/import |
+| Diagram paths: the port handlers in `src/main/host.ts`; the main process in `src/main/app.ts`, which opens the window, starts the host with the dialog and printing services, and locks | at 82caeac: src/main/host.ts:1-3, 28-39; src/main/app.ts:16, 34-37, 51-58, 84; src/main/dialogs.ts:1-2 |
 | D013: 32-byte data key sealed with AES-256-GCM; header binds generation and settings | docs/DECISIONS.md:71 |
 | D013: wrong password fails before the database is touched | docs/DECISIONS.md:76 |
 | D013: new key, copy re-encrypted, checked, next generation; `vault.json` rename the single commit point | docs/DECISIONS.md:73; docs/SECURITY_DESIGN.md:78 |
