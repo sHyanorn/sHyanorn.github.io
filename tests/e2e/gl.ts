@@ -17,6 +17,8 @@ declare global {
     held?: FrameRequestCallback[]
     /** Milliseconds between frames once a test spaces them out. */
     frameGap?: number
+    /** Calls the background's observer once, with an entry for each state. */
+    cross?: (inView: boolean[]) => void
   }
 }
 

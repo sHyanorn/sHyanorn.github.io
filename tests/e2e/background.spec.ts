@@ -347,6 +347,36 @@ test('a canvas scrolled out of view draws nothing', async ({ page }) => {
   await expect.poll(drawsOver300ms).toBeGreaterThan(0)
 })
 
+for (const [crossings, runs] of [
+  [[true, false], false],
+  [[false, true], true],
+] as const)
+  test(`two crossings in one observer delivery, the last ${runs ? 'into' : 'out of'} view: the loop ${runs ? 'runs' : 'stops'}`, async ({
+    page,
+  }) => {
+    // The test stands in for the observer and delivers the entries itself.
+    await page.addInitScript(() => {
+      window.IntersectionObserver = class {
+        constructor(callback: IntersectionObserverCallback) {
+          window.cross = (inView) =>
+            callback(
+              inView.map((isIntersecting) => ({ isIntersecting })) as never,
+              this as never,
+            )
+        }
+        observe() {}
+      } as never
+    })
+    await openPaused(page, BASE)
+    await page.clock.runFor(1000)
+    await page.evaluate((c) => window.cross!([...c]), crossings)
+    const before = await draws(page)
+    await page.clock.runFor(1000)
+    const drawn = (await draws(page)) - before
+    if (runs) expect(drawn).toBeGreaterThan(20)
+    else expect(drawn).toBe(0)
+  })
+
 /** From here on, every frame arrives `window.frameGap` ms after the one before. */
 async function spaceFrames(page: Page, gap: number) {
   await page.evaluate((g) => {

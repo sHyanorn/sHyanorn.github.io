@@ -243,8 +243,9 @@ function run(canvas: HTMLCanvasElement, gl: WebGL2RenderingContext): void {
     draw()
   })
 
-  new IntersectionObserver(([entry]) => {
-    inView = entry.isIntersecting
+  // One delivery holds every crossing since the last, oldest first.
+  new IntersectionObserver((entries) => {
+    inView = entries[entries.length - 1].isIntersecting
     update()
   }).observe(canvas)
   document.addEventListener('visibilitychange', update)
