@@ -102,20 +102,6 @@ const thumbs = themeCopies(first)
     transition: scale var(--duration) var(--ease-out);
   }
 
-  /* The first project's picture fills its frame from the top, where an
-     interface has its title and controls. */
-  .featured .thumb img {
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    max-width: none;
-    max-height: none;
-    border: 0;
-    border-radius: 0;
-    object-fit: cover;
-    object-position: top left;
-  }
-
   @media (prefers-reduced-motion: no-preference) {
     .card:hover .thumb img {
       scale: 1.02;
@@ -179,7 +165,7 @@ const thumbs = themeCopies(first)
       grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
     }
 
-    /* The picture fills the row the text sets, at least 22rem tall. */
+    /* The frame is as tall as the row the text sets, at least 22rem. */
     .featured .thumb {
       position: relative;
       order: 2;

@@ -63,6 +63,67 @@ for (const path of [BASE, `${BASE}zh/`])
       expect(largest, String(src)).toBe(Math.min(source as number, 1080))
   })
 
+// Every card shows its whole picture, drawn no wider than the file it loaded
+// has pixels. A frame takes its shape from the card, not from the picture: a
+// picture that filled the first card's frame lost its right side.
+for (const path of [BASE, `${BASE}zh/`])
+  for (const width of [390, 768, 1024, 1440, 1920])
+    test(`${path} at ${width} px: every card shows its whole picture`, async ({
+      page,
+    }) => {
+      await page.setViewportSize({ width, height: 900 })
+      await page.goto(path)
+      const imgs = page.locator('#projects .thumb img:visible')
+      await expect(imgs).toHaveCount(titles(false).length)
+      for (const img of await imgs.all()) {
+        await img.scrollIntoViewIfNeeded()
+        await expect
+          .poll(() => img.evaluate((el: HTMLImageElement) => el.complete))
+          .toBe(true)
+        const m = await img.evaluate((el: HTMLImageElement) => {
+          // `cover` crops the picture to the img's box, and the frame clips
+          // the box.
+          const fit = getComputedStyle(el).objectFit
+          const fitted = el.clientHeight * (el.naturalWidth / el.naturalHeight)
+          const drawn =
+            fit === 'cover'
+              ? Math.max(el.clientWidth, fitted)
+              : fit === 'contain'
+                ? Math.min(el.clientWidth, fitted)
+                : el.clientWidth
+          const inBox =
+            fit === 'cover' ? Math.min(el.clientWidth, fitted) / drawn : 1
+          const box = el.getBoundingClientRect()
+          const frame = el.closest('.thumb')!.getBoundingClientRect()
+          const inFrame =
+            ((Math.min(box.right, frame.right) -
+              Math.max(box.left, frame.left)) *
+              (Math.min(box.bottom, frame.bottom) -
+                Math.max(box.top, frame.top))) /
+            (box.width * box.height)
+          const loaded = el.srcset
+            .split(',')
+            .map((c) => c.trim().split(/\s+/))
+            .find(
+              ([url]) => new URL(url!, location.href).href === el.currentSrc,
+            )
+          return {
+            card: el.closest('.card')!.querySelector('h3')!.textContent!.trim(),
+            shown: inBox * inFrame,
+            drawn: Math.round(drawn),
+            pixels: parseInt(loaded![1]!),
+          }
+        })
+        expect(
+          m.shown,
+          `${m.card}: the share of its picture the frame shows`,
+        ).toBeGreaterThan(0.99)
+        expect(m.drawn, `${m.card}: the picture's width`).toBeLessThanOrEqual(
+          m.pixels,
+        )
+      }
+    })
+
 // Every card picture loads lazily; an eager first one measured no better in
 // Lighthouse.
 for (const path of [BASE, `${BASE}zh/`])
