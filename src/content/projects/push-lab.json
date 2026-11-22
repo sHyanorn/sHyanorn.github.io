@@ -2,8 +2,8 @@
   "title": "push-lab",
   "order": 1,
   "summary": {
-    "en": "An offline lab for push notification recommendation on public data, from recall and ranking to send volume and timing, with every result labelled by how far it can be trusted without live traffic. Copy selection is tested only in a simulator that does not read the text.",
-    "zh": "一个推送通知推荐的离线实验室，基于公开数据，覆盖召回、排序、发送量和发送时段；没有线上流量，所以每个结果都标明它可信到什么程度。文案选择只在一个不读取文案内容的模拟器里测试过。"
+    "en": "An offline lab for push notification recommendation on public data, from recall and ranking to send volume and timing, with every result labelled by how far it can be trusted without live traffic. On Duolingo's randomized notification logs, the template bandit beats uniform choice by 0.00174 (0.00126 to 0.00221) in two-hour completion per notification (Tier A).",
+    "zh": "一个推送通知推荐的离线实验室，基于公开数据，覆盖召回、排序、发送量和发送时段；没有线上流量，所以每个结果都标明它可信到什么程度。在 Duolingo 随机化的通知日志上（A 级），模板 bandit 比均匀选择使每条通知两小时内的完成率高 0.00174（0.00126 到 0.00221）。"
   },
   "tags": [
     { "en": "Python", "zh": "Python" },
@@ -26,31 +26,38 @@
         }
       },
       {
-        "src": "./push-lab/no-push.png",
+        "src": "./push-lab/duolingo.png",
         "alt": {
-          "en": "Line chart from the report marked post hoc, \"No pushes minus one a day, active-day share\". The truth rises from about −0.007 at annoyance 0 to about +0.031 at 0.1, crossing zero between 0 and 0.025, while the per-day DR estimate stays flat just below zero, between −0.005 and −0.004.",
-          "zh": "报告中标为事后分析的折线图，标题为“No pushes minus one a day, active-day share”。真值从厌烦程度为 0 时的约 −0.007 升到 0.1 时的约 +0.031，在 0 到 0.025 之间穿过零点；按天计算的 DR 估计值则一直平在零下方，介于 −0.005 和 −0.004 之间。"
+          "en": "The Duolingo section of the push-lab report, marked Tier A: 202,151,998 practice-reminder notifications over 33 days, each with its template drawn uniformly from the eligible ones. The template bandit beats uniform choice by 0.00174 (0.00126 to 0.00221) in two-hour completion per notification, from 0.12950 under uniform choice; its gain over the same policy without the recency penalty is +0.00029 (−0.00002 to 0.00061), no detectable difference.",
+          "zh": "push-lab 报告的 Duolingo 一节，标为 A 级：33 天里 202,151,998 条练习提醒通知，每条的模板都从符合条件的模板中均匀抽取。模板 bandit 比均匀选择使每条通知两小时内的完成率高 0.00174（0.00126 到 0.00221），均匀选择下为 0.12950；它相对去掉新近惩罚项的同一策略的差是 +0.00029（−0.00002 到 0.00061），没有可检测的差别。"
         },
         "caption": {
-          "en": "Not pushing against one push a day: above a small amount of annoyance the truth favours not pushing, while the estimate keeps favouring the push.",
-          "zh": "不发送与每天一条推送的对比：厌烦程度稍高一点，真值就倾向于不发送，而估计值始终倾向于发送。"
+          "en": "Tier A: the value of one notification under a template policy, given the logged histories, on Duolingo's randomized practice-reminder logs. The paper's offline lift lies inside the conservative IPS interval for 8 of 8 policies.",
+          "zh": "A 级：在 Duolingo 随机化的练习提醒日志上，一条通知在某个模板策略下、给定已记录历史时的价值。论文的离线提升落在 8 个策略的保守 IPS 区间之内（8 个中的 8 个）。"
         }
       },
       {
         "src": "./push-lab/report-top.png",
         "alt": {
-          "en": "The top of the push-lab report: the one-line summary, a highlighted note that the project has no Tier B result because no estimator passed the check on the full Men's campaign of the Open Bandit Dataset, a line on brackets and tiers, and links to its six sections.",
-          "zh": "push-lab 报告的开头：一句话简介；一条醒目的说明，指出项目没有 B 级结果，因为在 Open Bandit 数据集的完整男装活动上没有一个估计器通过检验；一行关于括号和证据等级的说明；以及报告六个部分的链接。"
+          "en": "The top of the push-lab report: the title, a one-paragraph summary with the Duolingo result (0.00174, 0.00126 to 0.00221), the simulator result (−2.3%, −2.4% to −2.2%) and the note that the lab has no Tier B result, and links to its nine sections.",
+          "zh": "push-lab 报告的开头：标题；一段摘要，包含 Duolingo 上的结果（0.00174，0.00126 到 0.00221）、模拟器里的结果（−2.3%，−2.4% 到 −2.2%）和项目没有 B 级结果的说明；以及报告九个部分的链接。"
         },
         "caption": {
-          "en": "The report opens with what the project could not show. It is generated from the committed results, with no scripts.",
-          "zh": "报告开头先说项目没能证明什么。它由提交的结果文件生成，不含脚本。"
+          "en": "The report opens with its summary: each result with its evidence tier, and the registered claim that does not hold. It is generated from the committed results, with no scripts.",
+          "zh": "报告开头是摘要：每个结果都标明证据等级，也写明没有成立的登记论断。它由提交的结果文件生成，不含脚本。"
         }
       }
     ]
   },
   "metrics": {
     "items": [
+      {
+        "value": { "en": "+0.00174", "zh": "+0.00174" },
+        "label": {
+          "en": "gain in two-hour completion per notification of the template bandit over uniform choice, on Duolingo's randomized logs (0.00126 to 0.00221, conservative across days); its recency penalty adds nothing detectable, +0.00029 (−0.00002 to 0.00061)",
+          "zh": "Duolingo 随机化日志上，模板 bandit 相对均匀选择在每条通知两小时内完成率上的提升（0.00126 到 0.00221，跨天取保守区间）；它的新近惩罚项没有可检测的增益，+0.00029（−0.00002 到 0.00061）"
+        }
+      },
       {
         "value": { "en": "0.891", "zh": "0.891" },
         "label": {
@@ -66,13 +73,6 @@
         }
       },
       {
-        "value": { "en": "23 of 24", "zh": "23 / 24" },
-        "label": {
-          "en": "sweep settings at which per-day DR reverses the true order of no pushes and one push a day (post hoc)",
-          "zh": "扫描设定中，按天计算的 DR 把“不发送”和“每天一条”的真实优劣颠倒过来的设定数（事后分析）"
-        }
-      },
-      {
         "value": { "en": "43 of 64", "zh": "43 / 64" },
         "label": {
           "en": "settings in which a gate at half the volume beats a daily push; it loses in 19, and wins in none once annoyance is removed",
@@ -81,12 +81,12 @@
       }
     ],
     "note": {
-      "en": "The first figure is Tier A, a measure of the estimators on randomized real data. The other three are Tier C and hold only in the simulator, read across a sweep of its assumptions. Brackets give 95% intervals, and per-setting verdicts rest on one model fit. The ten-minute-block interval of IPS is 0.789 to 1.004 here and 0.790 to 1.005 on the ope-checks page: the two projects ran it separately, and their point estimates differ too (0.8909 and 0.8913).",
-      "zh": "第一个数是 A 级证据，是在随机化的真实数据上对估计器本身的度量。其余三个是 C 级证据，只在模拟器里成立，要结合对模拟器假设的参数扫描来读。括号里是 95% 区间；逐个设定的结论只基于一次模型拟合。IPS 按 10 分钟时间块的区间，这里是 0.789 到 1.004，ope-checks 页上是 0.790 到 1.005：两个项目是分开各自跑的，点估计也不相同（0.8909 和 0.8913）。"
+      "en": "The first two figures are Tier A, on randomized real data: the first scores a policy for one notification given the logged histories, the second measures the estimators. The other two are Tier C and hold only in the simulator, read across a sweep of its assumptions. Brackets give 95% intervals, and per-setting verdicts rest on one model fit. In a registered long-horizon study, with one simulated world and 5,000 users, the estimator SMIS, on the project's exploration logs, favours one push a day over none at 6 of 8 settings, the reverse of the truth (Tier C); the study reads its primary labels at the reference only. The ten-minute-block interval of IPS is 0.789 to 1.004 here and 0.790 to 1.005 on the ope-checks page: the two projects ran it separately, and their point estimates differ too (0.8909 and 0.8913).",
+      "zh": "前两个数是 A 级证据，基于随机化的真实数据：第一个是在记录的历史下对一条通知给策略打分，第二个是对估计器本身的度量。其余两个是 C 级证据，只在模拟器里成立，要结合对模拟器假设的参数扫描来读。括号里是 95% 区间；逐个设定的结论只基于一次模型拟合。在一项登记的长周期研究中，模拟世界只有一个，用户 5,000 个，估计器 SMIS 在项目的探索日志上，于 8 个设定中的 6 个里偏向每天一条推送而非不推送，与真实情况相反（C 级）；该研究的主要标签只在基准设定下读取。IPS 按 10 分钟时间块的区间，这里是 0.789 到 1.004，ope-checks 页上是 0.790 到 1.005：两个项目是分开各自跑的，点估计也不相同（0.8909 和 0.8913）。"
     },
     "source": {
       "label": { "en": "Results summary", "zh": "结果摘要" },
-      "url": "https://github.com/sHyanorn/push-lab/blob/5a6c616666ab38b64e6169ba0c99ebe5540cda04/README.md"
+      "url": "https://github.com/sHyanorn/push-lab/blob/bc55dc0fa0d8f2eb2fe0b8aef07f3569da850d5e/README.md"
     }
   },
   "problem": [
@@ -99,8 +99,8 @@
       "zh": "项目的核心叙事在模拟开始前就作为假设预注册：每天给所有人推送排第一的内容，第一周点击最多，到第四周却会因厌烦和退订流失用户；只在预测增益够高时才发送、并受发送量预算约束的策略，能留住更多活跃用户。所有比较都预先定好，结果如实报告，叙事中没有成立的部分也照样报告。"
     },
     {
-      "en": "The end-to-end story is a simulation built on video feed data, and the uplift trials are e-mail and ads. Each result is therefore labelled Tier A when it rests on randomized real data, Tier B when it is an off-policy estimate from an estimator validated against a known answer, and Tier C when it comes from the simulator with a sensitivity sweep.",
-      "zh": "端到端的叙事是基于短视频推荐数据的模拟，增益实验用的是邮件和广告数据。因此每个结果都标了证据等级：基于随机化真实数据的为 A 级；由先经已知答案验证过的估计器给出的离策略估计为 B 级；来自模拟器并附有敏感性扫描的为 C 级。"
+      "en": "The end-to-end story is a simulation built on video feed data, and the uplift trials are e-mail and ads, and Duolingo's logs randomize only each notification's template. Each result is therefore labelled Tier A when it rests on randomized real data, Tier B when it is an off-policy estimate from an estimator validated against a known answer, and Tier C when it comes from the simulator with a sensitivity sweep.",
+      "zh": "端到端的叙事是基于短视频推荐数据的模拟，增益实验用的是邮件和广告数据，Duolingo 的日志只随机化每条通知的模板。因此每个结果都标了证据等级：基于随机化真实数据的为 A 级；由先经已知答案验证过的估计器给出的离策略估计为 B 级；来自模拟器并附有敏感性扫描的为 C 级。"
     }
   ],
   "architecture": {
@@ -135,8 +135,8 @@
       "sweepsEdge": { "en": "sweeps", "zh": "扫描结果" }
     },
     "description": {
-      "en": "Public datasets are downloaded with pinned checksums and converted to Parquet; raw data is never committed. Two-tower recall with a faiss index builds the candidate pool on KuaiRand, the two-tower score keeps the top N, and a LightGBM ranker picks the one item a push would carry. The delivery policy decides whether to send it, in which slot of the day and with which copy, under a volume budget, and it is run in a push simulator whose response model is fitted on KuaiRand's random exposures and whose assumptions are swept. The simulator's exploration logs fit the policy's uplift gate and feed the off-policy estimators, which are also checked on the Open Bandit Dataset. Uplift methods are tested on the randomized Hillstrom and Criteo trials. Every stage writes its results to JSON, and the report, which reads only those files, labels every number with its tier.",
-      "zh": "公开数据集按固定的校验和下载并转成 Parquet，原始数据从不提交。双塔召回配合 faiss 索引在 KuaiRand 上生成候选池，双塔分数保留前 N 个，再由 LightGBM 精排选出一条推送要带的内容。投放策略在发送量预算之下决定发不发、几点发、用哪条文案；它在一个推送模拟器里运行，模拟器的响应模型用 KuaiRand 的随机曝光数据拟合，各项假设都做参数扫描。模拟器的探索日志一方面用来拟合策略的增益门控，一方面交给离策略估计器，这些估计器另外在 Open Bandit 数据集上做过检验。增益模型在 Hillstrom 和 Criteo 两个随机化实验上检验。每个环节都把结果写成 JSON，报告只读取这些文件，并给每个数字标上证据等级。"
+      "en": "Public datasets are downloaded with pinned checksums and converted to Parquet; raw data is never committed. Two-tower recall with a faiss index builds the candidate pool on KuaiRand, the two-tower score keeps the top N, and a LightGBM ranker picks the one item a push would carry. The delivery policy decides whether to send it, in which slot of the day and with which copy, under a volume budget, and it is run in a push simulator whose response model is fitted on KuaiRand's random exposures and whose assumptions are swept. The simulator's exploration logs fit the policy's uplift gate and feed the off-policy estimators, which are also checked on the Open Bandit Dataset. Uplift methods are tested on the randomized Hillstrom and Criteo trials, and the template policy is scored offline on Duolingo's randomized notification logs. Every stage writes its results to JSON, and the report, which reads only those files, labels every number with its tier.",
+      "zh": "公开数据集按固定的校验和下载并转成 Parquet，原始数据从不提交。双塔召回配合 faiss 索引在 KuaiRand 上生成候选池，双塔分数保留前 N 个，再由 LightGBM 精排选出一条推送要带的内容。投放策略在发送量预算之下决定发不发、几点发、用哪条文案；它在一个推送模拟器里运行，模拟器的响应模型用 KuaiRand 的随机曝光数据拟合，各项假设都做参数扫描。模拟器的探索日志一方面用来拟合策略的增益门控，一方面交给离策略估计器，这些估计器另外在 Open Bandit 数据集上做过检验。增益模型在 Hillstrom 和 Criteo 两个随机化实验上检验，模板策略则在 Duolingo 随机化的通知日志上离线打分。每个环节都把结果写成 JSON，报告只读取这些文件，并给每个数字标上证据等级。"
     }
   },
   "decisions": {

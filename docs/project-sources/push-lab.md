@@ -2,22 +2,16 @@
 
 Content: `src/content/projects/push-lab.json`.
 
-All paths are in github.com/sHyanorn/push-lab at commit 937ad77.
+All paths are in github.com/sHyanorn/push-lab at commit 937ad77, except in the rows that start with "at <commit>:", which are at that commit.
 
 | Number or claim | Source |
 |---|---|
 | Offline lab for push notification recommendation on public data; recall, ranking, volume, timing; every result labeled by how far it can be trusted | README.md:3; docs/SPEC.md:5 |
-| Copy selection tested only in the simulator, which does not read the text | README.md:70; docs/SPEC.md:138 |
-| Demo: two charts and the top of the report at shyanorn.github.io/push-lab/, light theme, captured from the published report | README.md:5-7; docs/DECISIONS.md:495-497 (D049) |
 | Demo, first chart: DR bias against simulator truth along annoyance from 0 to 0.1; overrates two pushes a day, underrates fewer | README.md:28-32 |
-| Demo, second chart: truth from −0.0065 to +0.0315, DR between −0.0049 and −0.0036; post hoc | README.md:30 |
-| Demo, third image: no Tier B result; generated from committed results; no scripts | README.md:7, 18; docs/DECISIONS.md:496 (D049) |
 | 0.891 for IPS, 0.897 for DR on the full Men's campaign; the registered interval over impressions, 0.815 to 0.966, excludes the known value; no estimator passed | README.md:55; docs/DECISIONS.md:458, 460 (D046) |
 | Post hoc, over ten-minute blocks the interval of IPS is 0.789 to 1.004 | README.md:55; docs/DECISIONS.md:620 (D063); results/ope_obd_blocks.json (`full.validation.IPS.ratio_to_on_policy`) |
 | −2.3% (−2.4% to −2.2%) daily active share, one push a day against none, at the reference | README.md:39 |
-| 23 of 24 sweep settings at which DR reverses the order of no pushes and one a day; post hoc | README.md:30 |
 | 43 of 64 settings won at half volume, 19 lost, none won without annoyance | README.md:70 |
-| Metrics note: Tier A is a measure of the estimators on real data; Tier C holds in the simulator with its sweep; 95% intervals; one model fit per setting | README.md:7, 12-16, 39; docs/SPEC.md:95 |
 | Metrics note: the ten-minute-block interval of IPS is 0.789 to 1.004 here and 0.790 to 1.005 on the ope-checks page | results/ope_obd_blocks.json (`full.validation.IPS.ratio_to_on_policy`: `ci_low` 0.7891, `ci_high` 1.0043); ope-checks at 6a276af obd/results/men.json (`quantities["h3.ips"].interval`: 0.7895, 1.0046) |
 | Metrics note: the two projects ran it separately | src/push_lab/ope/obd_blocks.py:1-9, 152-180 (its own code, writing `results/ope_obd_blocks.json`); ope-checks at 6a276af obd/results/men.json (`command`: `python -m obd.run men`; `code_commit` `581b29d`) |
 | Metrics note: their point estimates differ too, 0.8909 and 0.8913 | results/ope_obd_blocks.json (`full.validation.IPS.ratio_to_on_policy.value`); ope-checks at 6a276af obd/results/men.json (`quantities["h3.ips"].estimate`) |
@@ -54,3 +48,10 @@ All paths are in github.com/sHyanorn/push-lab at commit 937ad77.
 | Open Bandit: the registered verdict stands, and no estimator is treated as validated | README.md:55; docs/DECISIONS.md:617, 625 (D063) |
 | Random streams: trailing zeros ignored; exploration coins keyed by seed, day and slot; open rate 0.13 to 0.38 in a synthetic run | docs/DECISIONS.md:296 (D032) |
 | Random streams: purpose first and a closing 1; test of uncorrelated streams; bit-for-bit rerun of `sim.build` | docs/DECISIONS.md:297-298 |
+| Summary: the template bandit beats uniform choice on Duolingo's randomized logs by 0.00174 (0.00126 to 0.00221), Tier A; SMIS favours one push a day over none at 6 of 8 settings, the reverse of the truth, Tier C | at bc55dc0: README.md:6, 18, 29, 62-63; docs/DECISIONS.md:777-780 (D080, DL3: +0.00174 by IPS, interval 0.00126 to 0.00221); results/duolingo.json (ci_low 0.0012626, ci_high 0.0022134) |
+| Metric: +0.00174 on Duolingo's randomized logs, interval 0.00126 to 0.00221; recency penalty +0.00029 (−0.00002 to 0.00061) | at bc55dc0: README.md:6, 18, 29 (Tier A, one notification given the logged histories; conservative intervals across days); docs/DECISIONS.md:779 (D080, DL3: RD - U +0.00174, conservative interval 0.00126 to 0.00221; RD - D0 +0.00029, -0.00002 to 0.00061); results/duolingo.json. "23 of 24" is dropped for room: the README no longer states it (still in docs/DECISIONS.md:658 and results/evidence.json) |
+| Metrics note: Tier A and Tier C figures; the long-horizon study has one simulated world and 5,000 users | at bc55dc0: README.md:6, 18, 19, 29, 60; docs/DECISIONS.md:766 (D079); src/push_lab/report/text.py:21, 111-112, 311-312 (6 of 8 settings, every one in which pushes annoy users; on the exploration logs); results/ope_horizon.json |
+| Problem: Duolingo's logs randomize only each notification's template | at bc55dc0: docs/SPEC.md:216 (the Duolingo logs randomize only each notification's template); docs/METHODS.md:267 |
+| Diagram and description: the template policy scored offline on Duolingo's randomized notification logs | at bc55dc0: README.md:38 (on Duolingo's notification logs the same policy rule is scored offline on Duolingo's own templates, after a check that the logged template choice was uniform), 29 |
+| Metrics, report link: the README at its current commit | at bc55dc0: README.md (the generated summary and findings the link names) |
+| Demo: the carryover chart, the Duolingo section and the top of the report at shyanorn.github.io/push-lab/, light theme, captured from the published report | at bc55dc0: the published report https://shyanorn.github.io/push-lab/ (built from bc55dc0) (section #duolingo); src/push_lab/report/text.py:35-49; results/duolingo.json (rows.train 87,665,839 + rows.test 114,486,159 = 202,151,998; mean_test_reward 0.12950); docs/DECISIONS.md:777-780 (D080: 33 days, DL1 8 of 8, DL3); README.md:18, 29. Screenshot: scripts in the report message (pushlab-shots.mjs), duolingo.png 1456 x 704 ; at bc55dc0: the published report https://shyanorn.github.io/push-lab/ (built from bc55dc0) (page top, nav of nine links); README.md:6 (the summary); docs/DECISIONS.md:495-497 (D049, no scripts). Screenshot: scripts in the report message, report-top.png 1520 x 990 |
